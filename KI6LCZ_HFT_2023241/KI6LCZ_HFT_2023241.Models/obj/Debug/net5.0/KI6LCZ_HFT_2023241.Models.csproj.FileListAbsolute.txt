@@ -1,0 +1,12 @@
+C:\Users\barna\source\repos\KI6LCZ_HFT_2023241\KI6LCZ_HFT_2023241.Models\bin\Debug\net5.0\KI6LCZ_HFT_2023241.Models.deps.json
+C:\Users\barna\source\repos\KI6LCZ_HFT_2023241\KI6LCZ_HFT_2023241.Models\bin\Debug\net5.0\KI6LCZ_HFT_2023241.Models.dll
+C:\Users\barna\source\repos\KI6LCZ_HFT_2023241\KI6LCZ_HFT_2023241.Models\bin\Debug\net5.0\KI6LCZ_HFT_2023241.Models.pdb
+C:\Users\barna\source\repos\KI6LCZ_HFT_2023241\KI6LCZ_HFT_2023241.Models\obj\Debug\net5.0\KI6LCZ_HFT_2023241.Models.csproj.AssemblyReference.cache
+C:\Users\barna\source\repos\KI6LCZ_HFT_2023241\KI6LCZ_HFT_2023241.Models\obj\Debug\net5.0\KI6LCZ_HFT_2023241.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\barna\source\repos\KI6LCZ_HFT_2023241\KI6LCZ_HFT_2023241.Models\obj\Debug\net5.0\KI6LCZ_HFT_2023241.Models.AssemblyInfoInputs.cache
+C:\Users\barna\source\repos\KI6LCZ_HFT_2023241\KI6LCZ_HFT_2023241.Models\obj\Debug\net5.0\KI6LCZ_HFT_2023241.Models.AssemblyInfo.cs
+C:\Users\barna\source\repos\KI6LCZ_HFT_2023241\KI6LCZ_HFT_2023241.Models\obj\Debug\net5.0\KI6LCZ_HFT_2023241.Models.csproj.CoreCompileInputs.cache
+C:\Users\barna\source\repos\KI6LCZ_HFT_2023241\KI6LCZ_HFT_2023241.Models\obj\Debug\net5.0\KI6LCZ_HFT_2023241.Models.dll
+C:\Users\barna\source\repos\KI6LCZ_HFT_2023241\KI6LCZ_HFT_2023241.Models\obj\Debug\net5.0\refint\KI6LCZ_HFT_2023241.Models.dll
+C:\Users\barna\source\repos\KI6LCZ_HFT_2023241\KI6LCZ_HFT_2023241.Models\obj\Debug\net5.0\KI6LCZ_HFT_2023241.Models.pdb
+C:\Users\barna\source\repos\KI6LCZ_HFT_2023241\KI6LCZ_HFT_2023241.Models\obj\Debug\net5.0\ref\KI6LCZ_HFT_2023241.Models.dll

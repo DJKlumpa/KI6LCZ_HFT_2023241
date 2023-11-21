@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\EA191242\\source\\repos\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241.Models\\KI6LCZ_HFT_2023241.Models.csproj": {}
+    "C:\\Users\\barna\\source\\repos\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241.Models\\KI6LCZ_HFT_2023241.Models.csproj": {}
   },
   "projects": {
-    "C:\\Users\\EA191242\\source\\repos\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241.Models\\KI6LCZ_HFT_2023241.Models.csproj": {
+    "C:\\Users\\barna\\source\\repos\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241.Models\\KI6LCZ_HFT_2023241.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\EA191242\\source\\repos\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241.Models\\KI6LCZ_HFT_2023241.Models.csproj",
+        "projectUniqueName": "C:\\Users\\barna\\source\\repos\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241.Models\\KI6LCZ_HFT_2023241.Models.csproj",
         "projectName": "KI6LCZ_HFT_2023241.Models",
-        "projectPath": "C:\\Users\\EA191242\\source\\repos\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241.Models\\KI6LCZ_HFT_2023241.Models.csproj",
-        "packagesPath": "C:\\Users\\EA191242\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\EA191242\\source\\repos\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241.Models\\obj\\",
+        "projectPath": "C:\\Users\\barna\\source\\repos\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241.Models\\KI6LCZ_HFT_2023241.Models.csproj",
+        "packagesPath": "C:\\Users\\barna\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\barna\\source\\repos\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241.Models\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\EA191242\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\barna\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -55,7 +55,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }
