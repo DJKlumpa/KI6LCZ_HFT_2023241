@@ -21,12 +21,12 @@ namespace KI6LCZ_HFT_2023241.Logic
             _repository.Create(t);
         }
 
-        public void Delete(string id)
+        public void Delete(int id)
         {
             _repository.Delete(id);
         }
 
-        public Music Get(string id)
+        public Music Get(int id)
         {
             return _repository.Get(id);
         }

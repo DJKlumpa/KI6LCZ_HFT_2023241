@@ -9,9 +9,9 @@ namespace KI6LCZ_HFT_2023241.Logic
     public interface ILogic<T> where T : class
     {
         void Create(T t);
-        T Get(string id);
+        T Get(int id);
         IQueryable<T> GetAll();
-        void Delete(string id);
+        void Delete(int id);
         void Update(T t);
     }
 }

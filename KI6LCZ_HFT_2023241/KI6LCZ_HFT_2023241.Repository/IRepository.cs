@@ -10,9 +10,9 @@ namespace KI6LCZ_HFT_2023241.Repository
     public interface IRepository<T> where T : class
     {
         void Create(T t);
-        T Get(string id);
+        T Get(int id);
         IQueryable<T> ReadAll();
         void Update(T t);
-        void Delete(string id);
+        void Delete(int id);
     }
 }

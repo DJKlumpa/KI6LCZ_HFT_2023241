@@ -2418,6 +2418,20 @@
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
       },
+      "KI6LCZ_HFT_2023241.Logic/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "KI6LCZ_HFT_2023241.Models": "1.0.0",
+          "KI6LCZ_HFT_2023241.Repository": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/KI6LCZ_HFT_2023241.Logic.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/KI6LCZ_HFT_2023241.Logic.dll": {}
+        }
+      },
       "KI6LCZ_HFT_2023241.Models/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
@@ -7664,6 +7678,11 @@
         "system.xml.xmlserializer.nuspec"
       ]
     },
+    "KI6LCZ_HFT_2023241.Logic/1.0.0": {
+      "type": "project",
+      "path": "../KI6LCZ_HFT_2023241.Logic/KI6LCZ_HFT_2023241.Logic.csproj",
+      "msbuildProject": "../KI6LCZ_HFT_2023241.Logic/KI6LCZ_HFT_2023241.Logic.csproj"
+    },
     "KI6LCZ_HFT_2023241.Models/1.0.0": {
       "type": "project",
       "path": "../KI6LCZ_HFT_2023241.Models/KI6LCZ_HFT_2023241.Models.csproj",
@@ -7677,6 +7696,7 @@
   },
   "projectFileDependencyGroups": {
     "net5.0": [
+      "KI6LCZ_HFT_2023241.Logic >= 1.0.0",
       "KI6LCZ_HFT_2023241.Models >= 1.0.0",
       "KI6LCZ_HFT_2023241.Repository >= 1.0.0"
     ]
@@ -7708,6 +7728,9 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
+            "C:\\Users\\barna\\source\\repos\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241.Logic\\KI6LCZ_HFT_2023241.Logic.csproj": {
+              "projectPath": "C:\\Users\\barna\\source\\repos\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241.Logic\\KI6LCZ_HFT_2023241.Logic.csproj"
+            },
             "C:\\Users\\barna\\source\\repos\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241.Models\\KI6LCZ_HFT_2023241.Models.csproj": {
               "projectPath": "C:\\Users\\barna\\source\\repos\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241.Models\\KI6LCZ_HFT_2023241.Models.csproj"
             },
