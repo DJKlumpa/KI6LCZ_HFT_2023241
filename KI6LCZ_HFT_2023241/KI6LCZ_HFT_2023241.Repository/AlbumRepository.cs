@@ -46,6 +46,7 @@ namespace KI6LCZ_HFT_2023241.Repository
             albumUpdate.Musics = albums.Musics;
             albumUpdate.Band = albums.Band;
             albumUpdate.Genre= albums.Genre;
+
             musicDb.SaveChanges();
         }
     }
