@@ -29,7 +29,6 @@ namespace KI6LCZ_HFT_2023241.Client
 
                     Console.Write(item);
                     int timeout = rnd.Next(0, maxTimeout - timeoutCounter);
-                    Console.WriteLine(timeout);
                     timeoutCounter += timeout;
                     Thread.Sleep(timeout);
                 }
