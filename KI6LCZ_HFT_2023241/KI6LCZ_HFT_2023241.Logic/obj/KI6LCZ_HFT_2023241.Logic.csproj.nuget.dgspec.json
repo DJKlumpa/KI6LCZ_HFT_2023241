@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\barna\\source\\repos\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241.Logic\\KI6LCZ_HFT_2023241.Logic.csproj": {}
+    "C:\\Users\\EA191242\\Source\\Repos\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241.Logic\\KI6LCZ_HFT_2023241.Logic.csproj": {}
   },
   "projects": {
-    "C:\\Users\\barna\\source\\repos\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241.Logic\\KI6LCZ_HFT_2023241.Logic.csproj": {
+    "C:\\Users\\EA191242\\Source\\Repos\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241.Logic\\KI6LCZ_HFT_2023241.Logic.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\barna\\source\\repos\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241.Logic\\KI6LCZ_HFT_2023241.Logic.csproj",
+        "projectUniqueName": "C:\\Users\\EA191242\\Source\\Repos\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241.Logic\\KI6LCZ_HFT_2023241.Logic.csproj",
         "projectName": "KI6LCZ_HFT_2023241.Logic",
-        "projectPath": "C:\\Users\\barna\\source\\repos\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241.Logic\\KI6LCZ_HFT_2023241.Logic.csproj",
-        "packagesPath": "C:\\Users\\barna\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\barna\\source\\repos\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241.Logic\\obj\\",
+        "projectPath": "C:\\Users\\EA191242\\Source\\Repos\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241.Logic\\KI6LCZ_HFT_2023241.Logic.csproj",
+        "packagesPath": "C:\\Users\\EA191242\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\EA191242\\Source\\Repos\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241.Logic\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\barna\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\EA191242\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,11 +28,11 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\barna\\source\\repos\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241.Models\\KI6LCZ_HFT_2023241.Models.csproj": {
-                "projectPath": "C:\\Users\\barna\\source\\repos\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241.Models\\KI6LCZ_HFT_2023241.Models.csproj"
+              "C:\\Users\\EA191242\\Source\\Repos\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241.Models\\KI6LCZ_HFT_2023241.Models.csproj": {
+                "projectPath": "C:\\Users\\EA191242\\Source\\Repos\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241.Models\\KI6LCZ_HFT_2023241.Models.csproj"
               },
-              "C:\\Users\\barna\\source\\repos\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241.Repository\\KI6LCZ_HFT_2023241.Repository.csproj": {
-                "projectPath": "C:\\Users\\barna\\source\\repos\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241.Repository\\KI6LCZ_HFT_2023241.Repository.csproj"
+              "C:\\Users\\EA191242\\Source\\Repos\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241.Repository\\KI6LCZ_HFT_2023241.Repository.csproj": {
+                "projectPath": "C:\\Users\\EA191242\\Source\\Repos\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241.Repository\\KI6LCZ_HFT_2023241.Repository.csproj"
               }
             }
           }
@@ -62,21 +62,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\barna\\source\\repos\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241.Models\\KI6LCZ_HFT_2023241.Models.csproj": {
+    "C:\\Users\\EA191242\\Source\\Repos\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241.Models\\KI6LCZ_HFT_2023241.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\barna\\source\\repos\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241.Models\\KI6LCZ_HFT_2023241.Models.csproj",
+        "projectUniqueName": "C:\\Users\\EA191242\\Source\\Repos\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241.Models\\KI6LCZ_HFT_2023241.Models.csproj",
         "projectName": "KI6LCZ_HFT_2023241.Models",
-        "projectPath": "C:\\Users\\barna\\source\\repos\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241.Models\\KI6LCZ_HFT_2023241.Models.csproj",
-        "packagesPath": "C:\\Users\\barna\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\barna\\source\\repos\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241.Models\\obj\\",
+        "projectPath": "C:\\Users\\EA191242\\Source\\Repos\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241.Models\\KI6LCZ_HFT_2023241.Models.csproj",
+        "packagesPath": "C:\\Users\\EA191242\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\EA191242\\Source\\Repos\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241.Models\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\barna\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\EA191242\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -117,21 +117,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\barna\\source\\repos\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241.Repository\\KI6LCZ_HFT_2023241.Repository.csproj": {
+    "C:\\Users\\EA191242\\Source\\Repos\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241.Repository\\KI6LCZ_HFT_2023241.Repository.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\barna\\source\\repos\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241.Repository\\KI6LCZ_HFT_2023241.Repository.csproj",
+        "projectUniqueName": "C:\\Users\\EA191242\\Source\\Repos\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241.Repository\\KI6LCZ_HFT_2023241.Repository.csproj",
         "projectName": "KI6LCZ_HFT_2023241.Repository",
-        "projectPath": "C:\\Users\\barna\\source\\repos\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241.Repository\\KI6LCZ_HFT_2023241.Repository.csproj",
-        "packagesPath": "C:\\Users\\barna\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\barna\\source\\repos\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241.Repository\\obj\\",
+        "projectPath": "C:\\Users\\EA191242\\Source\\Repos\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241.Repository\\KI6LCZ_HFT_2023241.Repository.csproj",
+        "packagesPath": "C:\\Users\\EA191242\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\EA191242\\Source\\Repos\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241.Repository\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\barna\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\EA191242\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -145,8 +145,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\barna\\source\\repos\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241.Models\\KI6LCZ_HFT_2023241.Models.csproj": {
-                "projectPath": "C:\\Users\\barna\\source\\repos\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241.Models\\KI6LCZ_HFT_2023241.Models.csproj"
+              "C:\\Users\\EA191242\\Source\\Repos\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241.Models\\KI6LCZ_HFT_2023241.Models.csproj": {
+                "projectPath": "C:\\Users\\EA191242\\Source\\Repos\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241\\KI6LCZ_HFT_2023241.Models\\KI6LCZ_HFT_2023241.Models.csproj"
               }
             }
           }
@@ -200,7 +200,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     }
