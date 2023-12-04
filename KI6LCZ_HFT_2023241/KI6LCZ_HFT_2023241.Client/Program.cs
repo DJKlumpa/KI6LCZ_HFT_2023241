@@ -3,6 +3,8 @@ using System;
 using KI6LCZ_HFT_2023241.Repository;
 using KI6LCZ_HFT_2023241.Logic;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace KI6LCZ_HFT_2023241.Client
 {
@@ -10,7 +12,32 @@ namespace KI6LCZ_HFT_2023241.Client
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Magyaroknak jó napot! \t\tCigányoknak jó melót!");
+            string loading = "Magyaroknak jó napot!\nCigányoknak jó munkát!";
+            int maxTimeout = 8000;
+            int timeoutCounter = 0;
+            //Console.WriteLine("Magyaroknak jó napot! \t\tCigányoknak jó munkát!");
+            Random rnd = new Random();
+
+            Task t = new Task(() =>
+            {
+                foreach (char item in loading)
+                {
+                    if (timeoutCounter >= maxTimeout)
+                    {
+                        break;
+                    }
+
+                    Console.Write(item);
+                    int timeout = rnd.Next(0, maxTimeout - timeoutCounter);
+                    Console.WriteLine(timeout);
+                    timeoutCounter += timeout;
+                    Thread.Sleep(timeout);
+                }
+            }, TaskCreationOptions.LongRunning);
+
+            t.Start();
+            
+            Console.WriteLine("asd");
             Music m = new Music();
             MusicDbContext db = new MusicDbContext();
 
@@ -23,6 +50,7 @@ namespace KI6LCZ_HFT_2023241.Client
             ILogic<Band> bandLogic = new BandLogic(bandRepository);
 
             var musics = musicLogic.GetAll();
+            t.Wait();
 
             Music mtemp = new Music()
             {
@@ -34,6 +62,8 @@ namespace KI6LCZ_HFT_2023241.Client
 
             musicLogic.Create(mtemp);
             var musicss = musicLogic.GetAll();
+
+
         }
     }
 }
