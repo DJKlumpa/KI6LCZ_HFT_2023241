@@ -23,10 +23,12 @@ namespace KI6LCZ_HFT_2023241.Repository
         {
             if (!builder.IsConfigured)
             {
-                string temp = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\music.mdf;Integrated Security=True;MultipleActiveResultSets=true";
-                builder
-                    .UseLazyLoadingProxies()
-                    .UseSqlServer(temp);
+                //string temp = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\music.mdf;Integrated Security=True;MultipleActiveResultSets=true";
+                //builder
+                //    .UseLazyLoadingProxies()
+                //    .UseSqlServer(temp);
+
+                builder.UseLazyLoadingProxies().UseInMemoryDatabase("musicDB");
             }
         }
 
