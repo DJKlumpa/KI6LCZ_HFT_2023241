@@ -1,5 +1,6 @@
 using KI6LCZ_HFT_2023241.Logic;
 using KI6LCZ_HFT_2023241.Repository;
+using KI6LCZ_HFT_2023241.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -12,9 +13,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using KI6LCZ_HFT_2023241.Models;
-using KI6LCZ_HFT_2023241.Logic;
-using KI6LCZ_HFT_2023241.Repository;
+using Microsoft.AspNetCore.Diagnostics;
+using KI6LCZ_HFT_2023241.Endpoint.Services;
 
 namespace KI6LCZ_HFT_2023241.Endpoint
 {
@@ -58,6 +58,16 @@ namespace KI6LCZ_HFT_2023241.Endpoint
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "KI6LCZ_HFT_2023241.Endpoint v1"));
             }
+            app.UseExceptionHandler(async c => c.Run(async context =>
+            {
+                var exception = context.Features
+                .Get<IExceptionHandlerPathFeature>()
+                .Error;
+            }));
+            app.UseCors(x => x.AllowCredentials()
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+            .WithOrigins("http://localhost:57746"));
 
             app.UseRouting();
 
@@ -66,6 +76,7 @@ namespace KI6LCZ_HFT_2023241.Endpoint
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<SignalRHub>("/hub");
             });
         }
     }

@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using KI6LCZ_HFT_2023241.Logic;
 using KI6LCZ_HFT_2023241.Models;
 using KI6LCZ_HFT_2023241.Endpoint.Services;
-using System.Collections.Generic;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
