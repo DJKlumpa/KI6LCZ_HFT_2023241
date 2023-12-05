@@ -16,6 +16,15 @@ namespace KI6LCZ_HFT_2023241.Logic
             _repository = repository;
         }
 
+        public Music Get(int id)
+        {
+            return _repository.Get(id);
+        }
+        public IQueryable<Music> GetAll()
+        {
+            return _repository.ReadAll();
+        }
+
         public void Create(Music t)
         {
             _repository.Create(t);
@@ -25,17 +34,6 @@ namespace KI6LCZ_HFT_2023241.Logic
         {
             _repository.Delete(id);
         }
-
-        public Music Get(int id)
-        {
-            return _repository.Get(id);
-        }
-
-        public IQueryable<Music> GetAll()
-        {
-            return _repository.ReadAll();
-        }
-
         public void Update(Music t)
         {
             _repository.Update(t);

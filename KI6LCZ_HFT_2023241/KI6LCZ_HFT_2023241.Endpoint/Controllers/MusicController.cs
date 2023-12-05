@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.SignalR;
 using System.Collections.Generic;
 using KI6LCZ_HFT_2023241.Logic;
 using KI6LCZ_HFT_2023241.Models;
+using KI6LCZ_HFT_2023241.Endpoint.Services;
 using System.Collections.Generic;
 using System;
 using System.Linq;
@@ -19,45 +20,52 @@ namespace KI6LCZ_HFT_2023241.Endpoint.Controllers
     {
 
         MusicLogic logic;
+        IHubContext<SignalRHub> rHub;
         
 
-        public MusicController(MusicLogic logic)
+        public MusicController(MusicLogic logic, IHubContext<SignalRHub> rHub)
         {
             this.logic = logic;
+            this.rHub = rHub;
         }
 
-        // GET: api/<MusicController>
+        //Get Music
         [HttpGet]
         public IEnumerable<Music> GetAll()
         {
             return this.logic.GetAll();
         }
 
-        
+        //Get Music/id
         [HttpGet("{id}")]
         public Music Get(int id)
         {
             return this.logic.Get(id);
         }
 
-        
+        //Create Music
         [HttpPost]
         public void Create([FromBody] Music value)
         {
-            this.logic.Create(value);
+            logic.Create(value);
+            rHub.Clients.All.SendAsync("Music Created", value);
         }
 
-        
+        //Update Music
         [HttpPut]
         public void Update([FromBody] Music value)
         {
-            this.logic.Update(value);
+            logic.Update(value);
+            rHub.Clients.All.SendAsync("Music Updated", value);
         }
 
+        //Delete Music/id
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            this.logic.Delete(id);
+            var temp = logic.Get(id);
+            logic.Delete(id);
+            rHub.Clients.All.SendAsync("Music Deleted", temp);
         }
     }
 }
