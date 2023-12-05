@@ -12,10 +12,10 @@ namespace KI6LCZ_HFT_2023241.Client
     {
         static void Main(string[] args)
         {
-            string loading = "Magyaroknak jó napot!\nCigányoknak jó munkát!";
+            #region Task&Thread
+            string loading = "Kedvenc karácsonyi ételem a diós bejgli. \nÉs a mákos is.";
             int maxTimeout = 8000;
             int timeoutCounter = 0;
-            //Console.WriteLine("Magyaroknak jó napot! \t\tCigányoknak jó munkát!");
             Random rnd = new Random();
 
             Task t = new Task(() =>
@@ -33,36 +33,7 @@ namespace KI6LCZ_HFT_2023241.Client
                     Thread.Sleep(200);
                 }
             }, TaskCreationOptions.LongRunning);
-
-            t.Start();
-            
-            Console.WriteLine("asd");
-            Music m = new Music();
-            MusicDbContext db = new MusicDbContext();
-
-            IRepository<Music> musicRepository = new MusicRepository(db);
-            IRepository<Album> albumRepository = new AlbumRepository(db);
-            IRepository<Band> bandRepository = new BandRepository(db);
-
-            ILogic<Music> musicLogic = new MusicLogic(musicRepository);
-            ILogic<Album> albumLogic = new AlbumLogic(albumRepository);
-            ILogic<Band> bandLogic = new BandLogic(bandRepository);
-
-            var musics = musicLogic.GetAll();
-            t.Wait();
-
-            Music mtemp = new Music()
-            {
-                Title = "Csokis narancs",
-                AlbumId = 1,
-                Length = 2.19,
-                Genre = Genre.Electronic_Dance
-            };
-
-            musicLogic.Create(mtemp);
-            var musicss = musicLogic.GetAll();
-
-
+            #endregion
         }
     }
 }
