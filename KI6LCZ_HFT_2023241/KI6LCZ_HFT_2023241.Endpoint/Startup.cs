@@ -1,3 +1,5 @@
+using KI6LCZ_HFT_2023241.Logic;
+using KI6LCZ_HFT_2023241.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -10,6 +12,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using KI6LCZ_HFT_2023241.Models;
+using KI6LCZ_HFT_2023241.Logic;
+using KI6LCZ_HFT_2023241.Repository;
 
 namespace KI6LCZ_HFT_2023241.Endpoint
 {
@@ -25,6 +30,17 @@ namespace KI6LCZ_HFT_2023241.Endpoint
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<MusicDbContext>();
+
+            services.AddTransient<IRepository<Music>, MusicRepository>();
+            services.AddTransient<IRepository<Album>, AlbumRepository>();
+            services.AddTransient<IRepository<Band>, BandRepository>();
+
+            services.AddTransient<MusicLogic, MusicLogic>();
+            services.AddTransient<AlbumLogic, AlbumLogic>();
+            services.AddTransient<BandLogic, BandLogic>();
+
+
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
