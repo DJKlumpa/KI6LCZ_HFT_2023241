@@ -22,7 +22,9 @@ namespace KI6LCZ_HFT_2023241.Models
         public virtual Band Band { get; set; }
         [NotMapped]
         public virtual ICollection<Music> Musics { get; set; }
-        
+
+        [NotMapped]
+        public string AllData => $"[{Id}] => {AlbumName} - {BandId} - {Year} - {Genre}";
 
         public Album()
         {

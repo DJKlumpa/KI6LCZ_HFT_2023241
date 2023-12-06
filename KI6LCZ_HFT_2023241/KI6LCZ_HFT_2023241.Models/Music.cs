@@ -19,5 +19,8 @@ namespace KI6LCZ_HFT_2023241.Models
         public double Length { get; set; }
         public Genre Genre { get; set; }
 
+        [NotMapped]
+        public string AllData => $"[{Id}] => {Title} - {Album} - {Length} - {Genre}";
+
     }
 }

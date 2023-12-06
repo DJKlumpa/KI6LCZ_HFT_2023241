@@ -1,14 +1,18 @@
 ﻿using System;
 using KI6LCZ_HFT_2023241.Models;
 using System.Linq;
+using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using ConsoleTools;
+using System.Collections;
+using System.Collections.Generic;
+using System.Numerics;
 
 
 namespace KI6LCZ_HFT_2023241.Client
 {
-    internal class Program
+    class Program
     {
         static void Main(string[] args)
         {
@@ -34,11 +38,47 @@ namespace KI6LCZ_HFT_2023241.Client
                 }
             }, TaskCreationOptions.LongRunning);
             #endregion
-            
-            #region GetOneMenu
-            var getOneMenu = new ConsoleMenu(args, level: 1)
-            
+            RestService restService = new RestService("http://localhost:41147");
+            #region GetAllMenu
+            var getAllMenu = new ConsoleMenu(args, level: 1)
+            .Add("Get all musics", () => GetAllInstance(restService, "music"))
+           .Add("Get all albums", () => GetAllInstance(restService, "album"))
+           .Add("Get all bands", () => GetAllInstance(restService, "band"))
+           .Add("Back", ConsoleMenu.Close)
+           .Configure(config =>
+           {
+               config.Selector = "~>";
+               config.EnableFilter = true;
+               config.Title = "Get all data\n";
+               config.EnableBreadcrumb = true;
+               config.WriteBreadcrumbAction = titles => Console.Write(string.Join(" > ", titles));
+           });
             #endregion
+
+
+            static void GetAllInstance(RestService rs, string model)
+            {
+
+                Console.Clear();
+                Console.WriteLine("GET ALL");
+
+                if (model == "hospital")
+                {
+                    rs.Get<Music>($"{model}").ForEach(x => Console.WriteLine(x.AllData));
+                }
+                else if (model == "doctor")
+                {
+                    rs.Get<Album>($"{model}").ForEach(x => Console.WriteLine(x.AllData));
+                }
+                else
+                {
+                    rs.Get<Band>($"{model}").ForEach(x => Console.WriteLine(x.AllData));
+                }
+
+
+                Console.WriteLine("\nPRESS ENTER TO CONTINUE");
+                Console.ReadLine();
+            }
         }
     }
 }

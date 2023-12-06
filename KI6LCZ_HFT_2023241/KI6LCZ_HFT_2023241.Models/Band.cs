@@ -21,6 +21,7 @@ namespace KI6LCZ_HFT_2023241.Models
 
         public int AlbumCounter { get => Albums.Count; }
 
+        public string AllData => $"[{Id}] => {BandName} - {Year} - {Albums} - {AlbumCounter}";
         public Band()
         {
              Albums = new List<Album>();
