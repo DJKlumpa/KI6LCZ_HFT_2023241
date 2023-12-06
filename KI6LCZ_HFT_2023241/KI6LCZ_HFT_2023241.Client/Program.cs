@@ -1,10 +1,10 @@
-﻿using KI6LCZ_HFT_2023241.Models;
-using System;
-using KI6LCZ_HFT_2023241.Repository;
-using KI6LCZ_HFT_2023241.Logic;
+﻿using System;
+using KI6LCZ_HFT_2023241.Models;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using ConsoleTools;
+
 
 namespace KI6LCZ_HFT_2023241.Client
 {
@@ -33,6 +33,11 @@ namespace KI6LCZ_HFT_2023241.Client
                     Thread.Sleep(200);
                 }
             }, TaskCreationOptions.LongRunning);
+            #endregion
+            
+            #region GetOneMenu
+            var getOneMenu = new ConsoleMenu(args, level: 1)
+            
             #endregion
         }
     }
