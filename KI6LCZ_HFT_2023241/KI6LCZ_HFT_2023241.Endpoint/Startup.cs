@@ -76,7 +76,6 @@ namespace KI6LCZ_HFT_2023241.Endpoint
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                endpoints.MapHub<SignalRHub>("/hub");
             });
         }
     }
