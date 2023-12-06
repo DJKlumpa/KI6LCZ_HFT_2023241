@@ -16,8 +16,8 @@ namespace KI6LCZ_HFT_2023241.Client
     {
         static void Main(string[] args)
         {
-            #region Task&Thread
-            string loading = "Kedvenc karácsonyi ételem a diós bejgli. \nÉs a mákos is.";
+            #region Task&Thread     change this!!!!!!!
+            string loading = "This is the half ";
             int maxTimeout = 8000;
             int timeoutCounter = 0;
             Random rnd = new Random();
@@ -37,8 +37,10 @@ namespace KI6LCZ_HFT_2023241.Client
                     Thread.Sleep(200);
                 }
             }, TaskCreationOptions.LongRunning);
-            #endregion
+            #endregion 
+            
             RestService restService = new RestService("http://localhost:41147");
+
             #region GetAllMenu
             var getAllMenu = new ConsoleMenu(args, level: 1)
             .Add("Get all musics", () => GetAllInstance(restService, "music"))
@@ -54,30 +56,91 @@ namespace KI6LCZ_HFT_2023241.Client
                config.WriteBreadcrumbAction = titles => Console.Write(string.Join(" > ", titles));
            });
             #endregion
+            #region GetOneMenu
+            var getOneMenu = new ConsoleMenu(args, level: 1)
+        .Add("Get one hospital", () => GetOneInstance(restService, "hospital"))
+        .Add("Get one doctor", () => GetOneInstance(restService, "doctor"))
+        .Add("Get one patient", () => GetOneInstance(restService, "patient"))
+        .Add("Back", ConsoleMenu.Close)
+        .Configure(config =>
+        {
+            config.Selector = "~>";
+            config.EnableFilter = true;
+            config.Title = "Get all data\n";
+            config.EnableBreadcrumb = true;
+            config.WriteBreadcrumbAction = titles => Console.Write(string.Join(" > ", titles));
+        });
+            #endregion
 
-
-            static void GetAllInstance(RestService rs, string model)
+            #region GetAllInstance
+            static void GetAllInstance(RestService restService, string model)
             {
 
                 Console.Clear();
                 Console.WriteLine("GET ALL");
 
-                if (model == "hospital")
+                if (model == "music")
                 {
-                    rs.Get<Music>($"{model}").ForEach(x => Console.WriteLine(x.AllData));
+                    restService.Get<Music>($"{model}").ForEach(x => Console.WriteLine(x.AllData));
                 }
-                else if (model == "doctor")
+                else if (model == "album")
                 {
-                    rs.Get<Album>($"{model}").ForEach(x => Console.WriteLine(x.AllData));
+                    restService.Get<Album>($"{model}").ForEach(x => Console.WriteLine(x.AllData));
                 }
                 else
                 {
-                    rs.Get<Band>($"{model}").ForEach(x => Console.WriteLine(x.AllData));
+                    restService.Get<Band>($"{model}").ForEach(x => Console.WriteLine(x.AllData));
                 }
 
+                
+            }
+            
+            Console.WriteLine("\nPRESS ENTER TO CONTINUE");
+            Console.ReadLine();
+            #endregion
+            #region GetOneInstance
+            static void GetOneInstance(RestService restService, string model)
+            {
+                Console.Clear();
+                Console.WriteLine("GET ONE");
 
-                Console.WriteLine("\nPRESS ENTER TO CONTINUE");
-                Console.ReadLine();
+                if (model == "music")
+                {
+                    restService.Get<Music>($"{model}").ForEach(x => Console.WriteLine($"[{x.Id}] - {x.Title}"));
+
+                    Console.Write("Select an id: "); Console.WriteLine();
+                    int id = int.Parse(Console.ReadLine());
+                    Console.Clear();
+
+                    var music = restService.GetSingle<Music>($"{model}/{id}");
+                    Console.WriteLine($"{music.AllData} - Albums");
+
+                }
+                else if (model == "album")
+                {
+                    restService.Get<Album>($"{model}").ForEach(x => Console.WriteLine($"[{x.Id}] - {x.AlbumName}"));
+
+                    Console.Write("Select an id: "); Console.WriteLine();
+                    int id = int.Parse(Console.ReadLine());
+                    Console.Clear();
+
+                    var album = restService.GetSingle<Band>($"{model}/{id}");
+                    Console.WriteLine($"{album.AllData} - Bands: {album.AlbumCounter}");
+                }
+                else
+                {
+                    restService.Get<Band>($"{model}").ForEach(x => Console.WriteLine($"[{x.Id}] - {x.BandName}"));
+
+                    Console.Write("Select an id: "); Console.WriteLine();
+                    int id = int.Parse(Console.ReadLine());
+                    Console.Clear();
+
+                    var band = restService.GetSingle<Band>($"{model}/{id}");
+                    Console.WriteLine($"{band.AllData}");
+                }
+            Console.WriteLine("\nPRESS ENTER TO CONTINUE");
+            Console.ReadLine();
+            #endregion
             }
         }
     }
