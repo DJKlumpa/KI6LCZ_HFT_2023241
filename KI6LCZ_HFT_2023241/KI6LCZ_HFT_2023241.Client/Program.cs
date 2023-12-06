@@ -42,42 +42,26 @@ namespace KI6LCZ_HFT_2023241.Client
 
             restService = new RestService("http://localhost:9775");
 
-
-            #region GetAllMenu
-            var getAllMenu = new ConsoleMenu(args, level: 1)
-            .Add("Get all musics", () => GetAllInstance(restService, "music"))
-           .Add("Get all albums", () => GetAllInstance(restService, "album"))
-           .Add("Get all bands", () => GetAllInstance(restService, "band"))
-           .Add("Back", ConsoleMenu.Close)
-           .Configure(config =>
-           {
-               config.Selector = "~>";
-               config.EnableFilter = true;
-               config.Title = "Get all data\n";
-               config.EnableBreadcrumb = true;
-               config.WriteBreadcrumbAction = titles => Console.Write(string.Join(" > ", titles));
-           });
-            #endregion
-            #region GetOneMenu
-            var getOneMenu = new ConsoleMenu(args, level: 1)
-        .Add("Get one hospital", () => GetOneInstance(restService, "hospital"))
-        .Add("Get one doctor", () => GetOneInstance(restService, "doctor"))
-        .Add("Get one patient", () => GetOneInstance(restService, "patient"))
-        .Add("Back", ConsoleMenu.Close)
-        .Configure(config =>
-        {
-            config.Selector = "~>";
-            config.EnableFilter = true;
-            config.Title = "Get all data\n";
-            config.EnableBreadcrumb = true;
-            config.WriteBreadcrumbAction = titles => Console.Write(string.Join(" > ", titles));
-        });
-            #endregion
-
-            var subMenu = new ConsoleMenu(args, level: 1)
-            .Add("Update", () => Update(restService,"music"))
-            .Add("Sub_Two", getOneMenu.Show)
-            .Add("Sub_Close", ConsoleMenu.Close)
+            var subMenuMusic = new ConsoleMenu(args, level: 1)
+            .Add("Create", () => Create(restService, "music"))
+            .Add("Update", () => Update(restService, "music"))
+            .Add("Delete", () => Delete(restService, "music"))
+            .Add("Get One Data", () => GetOneInstance(restService, "music"))
+            .Add("Gett All Data", () => GetAllInstance(restService, "music"))
+            .Configure(config =>
+            {
+                config.Selector = "--> ";
+                config.EnableFilter = true;
+                config.Title = "Submenu";
+                config.EnableBreadcrumb = true;
+                config.WriteBreadcrumbAction = titles => Console.WriteLine(string.Join(" / ", titles));
+            });
+            var subMenuAlbum = new ConsoleMenu(args, level: 1)
+            .Add("Create", () => Create(restService, "album"))
+            .Add("Update", () => Update(restService, "album"))
+            .Add("Delete", () => Delete(restService, "album"))
+            .Add("Get One Data", () => GetOneInstance(restService, "album"))
+            .Add("Gett All Data", () => GetAllInstance(restService, "album"))
             .Configure(config =>
             {
                 config.Selector = "--> ";
@@ -87,12 +71,42 @@ namespace KI6LCZ_HFT_2023241.Client
                 config.WriteBreadcrumbAction = titles => Console.WriteLine(string.Join(" / ", titles));
             });
 
+            var subMenuBand = new ConsoleMenu(args, level: 1)
+            .Add("Create", () => Create(restService, "band"))
+            .Add("Update", () => Update(restService, "band"))
+            .Add("Delete", () => Delete(restService, "band"))
+            .Add("Get One Data", () => GetOneInstance(restService, "band"))
+            .Add("Gett All Data", () => GetAllInstance(restService, "band"))
+            .Configure(config =>
+            {
+                config.Selector = "--> ";
+                config.EnableFilter = true;
+                config.Title = "Submenu";
+                config.EnableBreadcrumb = true;
+                config.WriteBreadcrumbAction = titles => Console.WriteLine(string.Join(" / ", titles));
+            });
+
+            var subMenuStats = new ConsoleMenu(args, level: 1)
+                    .Add("Create", () => Create(restService, "album"))
+                    .Add("Create", () => Create(restService, "album"))
+                    .Add("Create", () => Create(restService, "album"))
+                    .Add("Create", () => Create(restService, "album"))
+                    .Add("Create", () => Create(restService, "album"))
+                        .Configure(config =>
+{
+                        config.Selector = "--> ";
+                        config.EnableFilter = true;
+                        config.Title = "Submenu";
+                        config.EnableBreadcrumb = true;
+                        config.WriteBreadcrumbAction = titles => Console.WriteLine(string.Join(" / ", titles));
+});
+
 
 
             var menu = new ConsoleMenu(args, level: 0)
-              .Add("Music", subMenu.Show)
-              .Add("Album", (thisMenu) => thisMenu.CurrentItem.Name = "I am changed!")
-              .Add("Band", ConsoleMenu.Close)
+              .Add("Music", subMenuMusic.Show)
+              .Add("Album", subMenuAlbum.Show)
+              .Add("Band", subMenuBand.Show)
               .Add("Exit", () => Environment.Exit(0))
               .Configure(config =>
               {
@@ -124,12 +138,11 @@ namespace KI6LCZ_HFT_2023241.Client
                 {
                     restService.Get<Band>($"{model}").ForEach(x => Console.WriteLine(x.AllData));
                 }
-
-
+                Console.WriteLine("\nPRESS ENTER TO CONTINUE");
+                Console.ReadLine();
             }
 
-            Console.WriteLine("\nPRESS ENTER TO CONTINUE");
-            Console.ReadLine();
+            
             #endregion
             #region GetOneInstance
             static void GetOneInstance(RestService restService, string model)
@@ -175,7 +188,7 @@ namespace KI6LCZ_HFT_2023241.Client
                 Console.ReadLine();
                 #endregion
 
-                
+
             }
             static void Update(RestService rs, string model)
             {
@@ -383,12 +396,12 @@ namespace KI6LCZ_HFT_2023241.Client
                 Console.ReadLine();
             }
 
-                Console.Clear();
-                Console.WriteLine("Item updated!");
-                Console.WriteLine("\nPRESS ENTER TO CONTINUE");
-                Console.ReadLine();
-            }
-
-
+            Console.Clear();
+            Console.WriteLine("Item updated!");
+            Console.WriteLine("\nPRESS ENTER TO CONTINUE");
+            Console.ReadLine();
         }
+
+
     }
+}
