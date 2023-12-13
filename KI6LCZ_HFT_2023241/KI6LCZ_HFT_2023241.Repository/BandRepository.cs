@@ -7,34 +7,34 @@ using System.Threading.Tasks;
 
 namespace KI6LCZ_HFT_2023241.Repository
 {
-    public class BandRepository : IBandRepository
+    public class BandRepository : IRepository<Band>
     {
-        public MusicDbContext musicDb;
+        private readonly MusicDbContext _musicDb;
         public BandRepository(MusicDbContext musicDb)
         {
-            this.musicDb = musicDb;
+            this._musicDb = musicDb;
         }
         public void Create(Band item)
         {
-            musicDb.Add(item);
-            musicDb.SaveChanges();
+            _musicDb.Add(item);
+            _musicDb.SaveChanges();
         }
 
         public void Delete(int id)
         {
             Band toDelete = Get(id);
-            musicDb.Remove(toDelete);
-            musicDb.SaveChanges();
+            _musicDb.Remove(toDelete);
+            _musicDb.SaveChanges();
         }
 
         public Band Get(int id)
         {
-            return musicDb.Bands.SingleOrDefault(X => X.Id == id);
+            return _musicDb.Bands.SingleOrDefault(X => X.Id == id);
         }
 
         public IQueryable<Band> ReadAll()
         {
-            return musicDb.Bands.AsQueryable();
+            return _musicDb.Bands.AsQueryable();
         }
 
         public void Update(Band bands)
@@ -43,7 +43,7 @@ namespace KI6LCZ_HFT_2023241.Repository
             bandUpdate.BandName = bands.BandName;
             bandUpdate.Year = bands.Year;
             bandUpdate.Albums = bands.Albums;
-            musicDb.SaveChanges();
+            _musicDb.SaveChanges();
         }
     }
 }

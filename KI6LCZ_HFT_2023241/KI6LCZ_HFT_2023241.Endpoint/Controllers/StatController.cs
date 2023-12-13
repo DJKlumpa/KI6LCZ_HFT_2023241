@@ -11,9 +11,9 @@ namespace KI6LCZ_HFT_2023241.Endpoint.Controllers
     [ApiController]
     public class StatController : ControllerBase
     {
-        IBandLogic bandLogic;
-        IAlbumLogic albumLogic;
         IMusicLogic musicLogic;
+        IAlbumLogic albumLogic;
+        IBandLogic bandLogic;
         public StatController(IBandLogic bandLogic, IAlbumLogic albumLogic, IMusicLogic musicLogic)
         {
             this.bandLogic = bandLogic;
@@ -21,38 +21,39 @@ namespace KI6LCZ_HFT_2023241.Endpoint.Controllers
             this.musicLogic = musicLogic;
         }
 
-        [HttpGet]
-        public IEnumerable<Album> q1()
+        //https://localhost:54376/stat/BandID2Albums
+        [HttpGet("{bandID}")]
+        public IEnumerable<Album> BandID2Albums(int bandID)
         {
-            return albumLogic.BandID2Albums();
+            return albumLogic.SpecificBandAlbums(bandID);
+        }
+        [HttpGet("{startDate}&{endDate}")]
+        public IEnumerable<Album> BandBetweenDates(int startDate, int endDate)
+        {
+            return albumLogic.BandBetweenDates(startDate, endDate);
         }
         [HttpGet]
-        public IEnumerable<Album> q2()
-        {
-            return albumLogic.BandBetween91and2009();
-        }
-        [HttpGet]
-        public IEnumerable<Album> q3()
+        public IEnumerable<Album> BandMoreThan1Album()
         {
             return albumLogic.BandMoreThan1Album();
         }
         [HttpGet]
-        public IEnumerable<Album> q4()
+        public IEnumerable<Album> DarkShadowsAlbumbs()
         {
             return albumLogic.DarkShadowsAlbumbs();
         }
         [HttpGet]
-        public IEnumerable<Music> q5()
+        public IEnumerable<Music> MusicWhereAlbumID2()
         {
             return musicLogic.MusicWhereAlbumID2();
         }
         [HttpGet]
-        public IEnumerable<Music> q6()
+        public IEnumerable<Music> MusicWhereAlbumAfter1991()
         {
             return musicLogic.MusicWhereAlbumAfter1991();
         }
         [HttpGet]
-        public IEnumerable<Music> q7()
+        public IEnumerable<Music> MusicWhereAlbumGenrePop()
         {
             return musicLogic.MusicWhereAlbumGenrePop();
         }

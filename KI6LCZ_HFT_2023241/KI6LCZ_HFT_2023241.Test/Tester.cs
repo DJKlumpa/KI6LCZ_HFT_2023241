@@ -22,16 +22,16 @@ namespace KI6LCZ_HFT_2023241.Test
         static List<Band> bandList;
         static List<Album> albumList;
 
-        static Mock<IMusicRepository> musicMock;
-        static Mock<IBandRepository> bandMock;
-        static Mock<IAlbumRepository> albumMock;
+        static Mock<IRepository<Music>> musicMock;
+        static Mock<IRepository<Album>> albumMock;
+        static Mock<IRepository<Band>> bandMock;
 
-        [OneTimeSetUp]
+        [SetUp]
         public static void TestSetUp()
         {
-            musicMock = new Mock<IMusicRepository>();
-            bandMock = new Mock<IBandRepository>();
-            albumMock = new Mock<IAlbumRepository>();
+            musicMock = new Mock<IRepository<Music>>();
+            albumMock = new Mock<IRepository<Album>>();
+            bandMock = new Mock<IRepository<Band>>();
 
             musicList = new List<Music> {
                 new Music(){Id=1,Title="Bloody Mary",AlbumId=2,Length=3.55,Genre="Pop" },
@@ -39,6 +39,10 @@ namespace KI6LCZ_HFT_2023241.Test
                 new Music(){Id=3,Title="we came as monkeys",AlbumId=4,Length=5.03,Genre="Metal"},
                 new Music(){Id=4,Title="Inside the Dark",AlbumId=4,Length=3.16,Genre="Metal"},
                 new Music(){Id=5,Title="Latin szótárak",AlbumId=2,Length=6.07,Genre="Latin"}
+            };            
+            bandList = new List<Band> {
+                new Band(){Id=1,BandName="Dark Shadows",Year=2003},
+                new Band(){Id=2,BandName="Unikornisok",Year=2010}
             };
             albumList = new List<Album> {
                 new Album(){Id=1,AlbumName="Sunday After Chruch",BandId=1,Year=2002,Genre="Electronic Dance"},
@@ -46,18 +50,14 @@ namespace KI6LCZ_HFT_2023241.Test
                 new Album(){Id=3,AlbumName="Dark Shadows EP",BandId=2,Year=2004,Genre="Metal"},
                 new Album(){Id=4,AlbumName="Getting Away with Toxic",BandId=2,Year=2006,Genre="Metal"}
             };
-            bandList = new List<Band> {
-                new Band(){Id=1,BandName="Dark Shadows",Year=2003},
-                new Band(){Id=2,BandName="Unikornisok",Year=2010}
-            };
 
             musicMock.Setup(x => x.ReadAll()).Returns(musicList.AsQueryable());
-            bandMock.Setup(x => x.ReadAll()).Returns(bandList.AsQueryable());
             albumMock.Setup(x => x.ReadAll()).Returns(albumList.AsQueryable());
+            bandMock.Setup(x => x.ReadAll()).Returns(bandList.AsQueryable());
 
             musicLogic = new MusicLogic(musicMock.Object);
+            albumLogic = new AlbumLogic(albumMock.Object,bandMock.Object);
             bandLogic = new BandLogic(bandMock.Object);
-            albumLogic = new AlbumLogic(albumMock.Object);
         }
 
         [Test]
@@ -152,12 +152,25 @@ namespace KI6LCZ_HFT_2023241.Test
             bandLogic.Delete(id);
             bandMock.Verify(repo => repo.Delete(id));
         }
+
+
+
         [Test]
-        public void AlbumQueryTest()
+        public void BandBetweenDates_Test()
         {
-            var result = albumLogic.BandID2Albums().ToArray();
+            var result = albumLogic.BandBetweenDates(1991, 2009).ToArray();
+            Assert.That(result.Count, Is.EqualTo(1));
+        }
+        [Test]
+        public void SpecificBandAlbums_Test()
+        {
+            var result = albumLogic.SpecificBandAlbums(2).ToArray();
             Assert.That(result.Count, Is.EqualTo(2));
         }
+
+        
+
+
     }
 
 

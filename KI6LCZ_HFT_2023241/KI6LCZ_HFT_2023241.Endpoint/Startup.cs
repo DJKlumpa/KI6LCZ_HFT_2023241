@@ -1,4 +1,5 @@
 using KI6LCZ_HFT_2023241.Logic;
+using KI6LCZ_HFT_2023241.Models;
 using KI6LCZ_HFT_2023241.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -19,16 +20,19 @@ namespace KI6LCZ_HFT_2023241.Endpoint
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+         
+            services.AddSingleton<MusicDbContext, MusicDbContext>();
 
-            services.AddTransient<IBandLogic, BandLogic>();
+            services.AddTransient<IRepository<Music>, MusicRepository>();
+            services.AddTransient<IRepository<Album>, AlbumRepository>();
+            services.AddTransient<IRepository<Band>, BandRepository>();
+
             services.AddTransient<IMusicLogic, MusicLogic>();
             services.AddTransient<IAlbumLogic, AlbumLogic>();
+            services.AddTransient<IBandLogic, BandLogic>();
 
-            services.AddTransient<IBandRepository, BandRepository>();
-            services.AddTransient<IMusicRepository, MusicRepository>();
-            services.AddTransient<IAlbumRepository, AlbumRepository>();
-
-            services.AddTransient<MusicDbContext, MusicDbContext>();
+            services.AddSwaggerGen();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -37,6 +41,8 @@ namespace KI6LCZ_HFT_2023241.Endpoint
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI();
             }
 
             app.UseRouting();

@@ -1,6 +1,7 @@
 ﻿using KI6LCZ_HFT_2023241.Logic;
 using KI6LCZ_HFT_2023241.Models;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -11,41 +12,50 @@ namespace KI6LCZ_HFT_2023241.Endpoint.Controllers
     [ApiController]
     public class AlbumController : ControllerBase
     {
-        IAlbumLogic albumLogic;
+        private readonly IAlbumLogic _albumLogic;
+
         public AlbumController(IAlbumLogic albumLogic)
         {
-            this.albumLogic = albumLogic;
+            this._albumLogic = albumLogic;
         }
 
         [HttpGet]
-        public IEnumerable<Album> Get()
+        public IActionResult Get()
         {
-            return albumLogic.GetAll();
+            return Ok(_albumLogic.GetAll());
         }
 
         [HttpGet("{id}")]
-        public Album Get(int id)
+        public IActionResult Get(int id)
         {
-            return albumLogic.Get(id);
+            return Ok(_albumLogic.Get(id));
         }
 
         [HttpPost]
-        public void Post([FromBody] Album album)
+        public IActionResult Post([FromBody] Album album)
         {
-            albumLogic.Create(album);
+            try
+            {
+                _albumLogic.Create(album);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
 
         [HttpPut]
         public void Put([FromBody] Album album)
         {
-            albumLogic.Update(album);
+            _albumLogic.Update(album);
         }
 
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            var albumToDelete = albumLogic.Get(id);
-            albumLogic.Delete(id);
+            Album albumToDelete = _albumLogic.Get(id);
+            _albumLogic.Delete(id);
         }
     }
 }

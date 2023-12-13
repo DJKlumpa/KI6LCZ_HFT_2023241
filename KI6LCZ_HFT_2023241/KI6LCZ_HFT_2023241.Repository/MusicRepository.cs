@@ -7,35 +7,35 @@ using System.Threading.Tasks;
 
 namespace KI6LCZ_HFT_2023241.Repository
 {
-    public class MusicRepository : IMusicRepository
+    public class MusicRepository : IRepository<Music>
     {
-        public MusicDbContext musicDb;
+        private readonly MusicDbContext _musicDb;
         public MusicRepository(MusicDbContext musicDb)
         {
-            this.musicDb = musicDb;
+            this._musicDb = musicDb;
         }
 
         public void Create(Music item)
         {
-            musicDb.Musics.Add(item);
-            musicDb.SaveChanges();
+            _musicDb.Musics.Add(item);
+            _musicDb.SaveChanges();
         }
 
         public void Delete(int id)
         {
             Music toDelete = Get(id);
-            musicDb.Remove(toDelete);
-            musicDb.SaveChanges();
+            _musicDb.Remove(toDelete);
+            _musicDb.SaveChanges();
         }
 
         public Music Get(int id)
         {
-            return musicDb.Musics.SingleOrDefault(X => X.Id == id);
+            return _musicDb.Musics.SingleOrDefault(X => X.Id == id);
         }
 
         public IQueryable<Music> ReadAll()
         {
-            return musicDb.Musics.AsQueryable();
+            return _musicDb.Musics.AsQueryable();
         }
 
         public void Update(Music musics)
@@ -45,7 +45,7 @@ namespace KI6LCZ_HFT_2023241.Repository
             musicUpdate.Album = musics.Album;
             musicUpdate.Genre = musics.Genre;
             musicUpdate.Length = musics.Length;
-            musicDb.SaveChanges();
+            _musicDb.SaveChanges();
         }
     }
 }

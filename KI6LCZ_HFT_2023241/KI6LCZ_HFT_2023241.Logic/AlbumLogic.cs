@@ -11,56 +11,67 @@ namespace KI6LCZ_HFT_2023241.Logic
 {
     public class AlbumLogic : IAlbumLogic
     {
-        IAlbumRepository albumRepository;
+        private readonly IRepository<Album> _albumRepository;
+        private readonly IRepository<Band> _bandRepository;
 
-        public AlbumLogic(IAlbumRepository albumRepository)
+        public AlbumLogic(IRepository<Album> albumRepository, IRepository<Band> bandRepository)
         {
-            this.albumRepository = albumRepository;
+            this._albumRepository = albumRepository;
+            _bandRepository = bandRepository;
         }
 
         public void Create(Album t)
         {
-            albumRepository.Create(t);
+            if (string.IsNullOrEmpty(t.AlbumName))
+            {
+                throw new Exception("Name is empty");
+            }
+
+            _albumRepository.Create(t);
         }
 
         public void Delete(int id)
         {
-            albumRepository.Delete(id);
+            _albumRepository.Delete(id);
         }
 
         public Album Get(int id)
         {
-            return albumRepository.Get(id);
+            return _albumRepository.Get(id);
         }
 
         public IQueryable<Album> GetAll()
         {
-            return albumRepository.ReadAll();
+            return _albumRepository.ReadAll();
         }
 
         public void Update(Album t)
         {
-            albumRepository.Update(t);
+            _albumRepository.Update(t);
         }
 
-        public IEnumerable<Album> BandID2Albums()
+        public IEnumerable<Album> SpecificBandAlbums(int bandID)
         {
-            var albumsForBand = albumRepository.ReadAll().Where(album => album.BandId == 2).ToList();
+            var albumsForBand = _albumRepository.ReadAll().Where(album => album.BandId == bandID).ToList();
             return albumsForBand;
         }
-        public IEnumerable<Album> BandBetween91and2009()
+        public IEnumerable<Album> BandBetweenDates(int startDate, int endDate)
         {
-            var albumsBetweenYears = albumRepository.ReadAll().Where(album => album.Band.Year >= 1991 && album.Band.Year <= 2009).ToList();
-            return albumsBetweenYears;
+            var albumsBetweenDates =   (from album in _albumRepository.ReadAll()
+                                        join band in _bandRepository.ReadAll() on album.Id equals band.Id
+                                        where album.Band.Year >= startDate && album.Band.Year <= endDate
+                                        select album).ToList();
+
+            return albumsBetweenDates;
         }
         public IEnumerable<Album> BandMoreThan1Album()
         {
-            var albumsMoreThanOne = albumRepository.ReadAll().Where(album => album.Band.Year > 2000).ToList();
+            var albumsMoreThanOne = _albumRepository.ReadAll().Where(album => album.Band.Year > 2000).ToList();
             return albumsMoreThanOne;
         }
         public IEnumerable<Album> DarkShadowsAlbumbs()
         {
-            var darkShadowsAlbums = albumRepository.ReadAll().Where(album => album.Band.BandName == "Dark Shadows").ToList();
+            var darkShadowsAlbums =  _albumRepository.ReadAll().Where(album => album.Band.BandName == "Dark Shadows").ToList();
             return darkShadowsAlbums;
         }
     }

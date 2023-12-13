@@ -9,47 +9,52 @@ namespace KI6LCZ_HFT_2023241.Logic
 {
     public class MusicLogic : IMusicLogic
     {
-        IMusicRepository musicRepository;
-        public MusicLogic(IMusicRepository musicRepository)
+        private readonly IRepository<Music> _musicRepository;
+        public MusicLogic(IRepository<Music> musicRepository)
         {
-            this.musicRepository = musicRepository;
+            this._musicRepository = musicRepository;
         }
 
         public Music Get(int id)
         {
-            return musicRepository.Get(id);
+            return _musicRepository.Get(id);
         }
         public IQueryable<Music> GetAll()
         {
-            return musicRepository.ReadAll();
+            return _musicRepository.ReadAll();
         }
 
         public void Create(Music t)
         {
-            musicRepository.Create(t);
+            if (string.IsNullOrEmpty(t.Title))
+            {
+                throw new Exception("Title is empty");
+            }
+
+            _musicRepository.Create(t);
         }
 
         public void Delete(int id)
         {
-            musicRepository.Delete(id);
+            _musicRepository.Delete(id);
         }
         public void Update(Music t)
         {
-            musicRepository.Update(t);
+            _musicRepository.Update(t);
         }
         public IEnumerable<Music> MusicWhereAlbumID2()
         {
-            var musicForBand = musicRepository.ReadAll().Where(music => music.Album.BandId == 2).ToList();
+            var musicForBand = _musicRepository.ReadAll().Where(music => music.Album.BandId == 2).ToList();
             return musicForBand;
         }
         public IEnumerable<Music> MusicWhereAlbumAfter1991()
         {
-            var musicAfter1991 = musicRepository.ReadAll().Where(music => music.Album.Year > 1991).ToList();
+            var musicAfter1991 = _musicRepository.ReadAll().Where(music => music.Album.Year > 1991).ToList();
             return musicAfter1991;
         }
         public IEnumerable<Music> MusicWhereAlbumGenrePop()
         {
-            var musicAlbumPop = musicRepository.ReadAll().Where(music => music.Album.Genre == "Pop").ToList();
+            var musicAlbumPop = _musicRepository.ReadAll().Where(music => music.Album.Genre == "Pop").ToList();
             return musicAlbumPop;
         }
     }

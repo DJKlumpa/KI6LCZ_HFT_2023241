@@ -10,36 +10,41 @@ namespace KI6LCZ_HFT_2023241.Logic
 {
     public class BandLogic : IBandLogic
     {
-        IBandRepository bandRepository;
+        private readonly IRepository<Band> _bandRepository;
 
-        public BandLogic(IBandRepository bandRepository)
+        public BandLogic(IRepository<Band> bandRepository)
         {
-            this.bandRepository = bandRepository;
+            this._bandRepository = bandRepository;
         }
 
         public void Create(Band t)
         {
-            bandRepository.Create(t);
+            if (string.IsNullOrEmpty(t.BandName))
+            {
+                throw new Exception("Name is empty");
+            }
+
+            _bandRepository.Create(t);
         }
 
         public void Delete(int id)
         {
-            bandRepository.Delete(id);
+            _bandRepository.Delete(id);
         }
 
         public Band Get(int id)
         {
-            return bandRepository.Get(id);
+            return _bandRepository.Get(id);
         }
 
         public IQueryable<Band> GetAll()
         {
-            return bandRepository.ReadAll();
+            return _bandRepository.ReadAll();
         }
 
         public void Update(Band t)
         {
-            bandRepository.Update(t);
+            _bandRepository.Update(t);
         }
 
     }

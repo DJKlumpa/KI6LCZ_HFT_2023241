@@ -5,6 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.5.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.5.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\KI6LCZ_HFT_2023241.Logic\KI6LCZ_HFT_2023241.Logic.csproj" />
     <ProjectReference Include="..\KI6LCZ_HFT_2023241.Models\KI6LCZ_HFT_2023241.Models.csproj" />
     <ProjectReference Include="..\KI6LCZ_HFT_2023241.Repository\KI6LCZ_HFT_2023241.Repository.csproj" />

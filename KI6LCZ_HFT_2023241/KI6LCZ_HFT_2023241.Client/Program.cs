@@ -48,6 +48,7 @@ namespace KI6LCZ_HFT_2023241.Client
             .Add("Delete", () => Delete(restService, "music"))
             .Add("Get One Data", () => GetOneInstance(restService, "music"))
             .Add("Gett All Data", () => GetAllInstance(restService, "music"))
+            .Add("Back", ConsoleMenu.Close)
             .Configure(config =>
             {
                 config.Selector = "--> ";
@@ -62,6 +63,7 @@ namespace KI6LCZ_HFT_2023241.Client
             .Add("Delete", () => Delete(restService, "album"))
             .Add("Get One Data", () => GetOneInstance(restService, "album"))
             .Add("Gett All Data", () => GetAllInstance(restService, "album"))
+            .Add("Back", ConsoleMenu.Close)
             .Configure(config =>
             {
                 config.Selector = "--> ";
@@ -77,6 +79,7 @@ namespace KI6LCZ_HFT_2023241.Client
             .Add("Delete", () => Delete(restService, "band"))
             .Add("Get One Data", () => GetOneInstance(restService, "band"))
             .Add("Gett All Data", () => GetAllInstance(restService, "band"))
+            .Add("Back", ConsoleMenu.Close)
             .Configure(config =>
             {
                 config.Selector = "--> ";
