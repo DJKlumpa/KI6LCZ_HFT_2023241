@@ -102,11 +102,11 @@ namespace KI6LCZ_HFT_2023241.Client
 });
 
 
-
             var menu = new ConsoleMenu(args, level: 0)
               .Add("Music", subMenuMusic.Show)
               .Add("Album", subMenuAlbum.Show)
               .Add("Band", subMenuBand.Show)
+              .Add("Queries", ()=>Query(restService))
               .Add("Exit", () => Environment.Exit(0))
               .Configure(config =>
               {
@@ -354,7 +354,6 @@ namespace KI6LCZ_HFT_2023241.Client
                 Console.WriteLine("\nPRESS ENTER TO CONTINUE");
                 Console.ReadLine();
             }
-
             static void Delete(RestService rs, string model)
             {
                 Console.Clear();
@@ -395,12 +394,52 @@ namespace KI6LCZ_HFT_2023241.Client
                 Console.WriteLine("\nPRESS ENTER TO CONTINUE");
                 Console.ReadLine();
             }
+            static void Query(RestService rs)
+            {
+                var q1 = rs.Get<Album>("stat/q1");
+                foreach (var album in q1)
+                {
+                    Console.WriteLine(album.AlbumName);
+                }
+                var q2 = rs.Get<Album>("stat/q2");
+                foreach (var album in q2)
+                {
+                    Console.WriteLine(album.AlbumName);
+                }
+                var q3 = rs.Get<Album>("stat/q3");
+                foreach (var album in q3)
+                {
+                    Console.WriteLine(album.AlbumName);
+                }
+                var q4 = rs.Get<Album>("stat/q4");
+                foreach (var album in q4)
+                {
+                    Console.WriteLine(album.AlbumName);
+                }
+                var q5 = rs.Get<Music>("stat/q5");
+                foreach (var music in q5)
+                {
+                    Console.WriteLine(music.Title);
+                }
+                var q6 = rs.Get<Music>("stat/q6");
+                foreach (var music in q6)
+                {
+                    Console.WriteLine(music.Title);
+                }
+                var q7 = rs.Get<Music>("stat/q7");
+                foreach (var music in q7)
+                {
+                    Console.WriteLine(music.Title);
+                }
+                Console.ReadKey();
+            }
 
             Console.Clear();
             Console.WriteLine("Item updated!");
             Console.WriteLine("\nPRESS ENTER TO CONTINUE");
             Console.ReadLine();
         }
+
 
 
     }

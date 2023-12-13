@@ -21,7 +21,7 @@ namespace KI6LCZ_HFT_2023241.Models
         [JsonIgnore]
         public virtual ICollection<Album> Albums { get; set; }
 
-        public int AlbumCounter { get => Albums.Count; }
+        public int AlbumCounter;
 
         public string AllData => $"[{Id}] => {BandName} - {Year} - {Albums} - {AlbumCounter}";
         public Band()

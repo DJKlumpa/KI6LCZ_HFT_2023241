@@ -79,10 +79,11 @@ namespace KI6LCZ_HFT_2023241.Repository
         {
             Id = 1,
             BandName="Vöröstollas",
-            Year=2000
+            Year=2000,
+            AlbumCounter = 9
         },
-        new Band(){Id=2,BandName="Dark Shadows",Year=2003},
-        new Band(){Id=3,BandName="Unikornisok",Year=2010}
+        new Band(){Id=2,BandName="Dark Shadows",Year=2003, AlbumCounter = 5},
+        new Band(){Id=3,BandName="Unikornisok",Year=2010, AlbumCounter = 4}
             });
         }
     }

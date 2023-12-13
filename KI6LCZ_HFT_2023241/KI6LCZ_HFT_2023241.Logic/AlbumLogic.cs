@@ -55,7 +55,7 @@ namespace KI6LCZ_HFT_2023241.Logic
         }
         public IEnumerable<Album> BandMoreThan1Album()
         {
-            var albumsMoreThanOne = albumRepository.ReadAll().Where(album => album.Band.AlbumCounter > 1).ToList();
+            var albumsMoreThanOne = albumRepository.ReadAll().Where(album => album.Band.Year > 2000).ToList();
             return albumsMoreThanOne;
         }
         public IEnumerable<Album> DarkShadowsAlbumbs()
