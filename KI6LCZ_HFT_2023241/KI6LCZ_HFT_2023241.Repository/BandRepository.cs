@@ -7,16 +7,15 @@ using System.Threading.Tasks;
 
 namespace KI6LCZ_HFT_2023241.Repository
 {
-    public class BandRepository : IRepository<Band>
+    public class BandRepository : IBandRepository
     {
-        protected MusicDbContext musicDb;
-        public BandRepository(MusicDbContext ctx)
+        public MusicDbContext musicDb;
+        public BandRepository(MusicDbContext musicDb)
         {
-            musicDb = ctx;
+            this.musicDb = musicDb;
         }
         public void Create(Band item)
         {
-            //musicDb.Set<Band>().Add(item);
             musicDb.Add(item);
             musicDb.SaveChanges();
         }

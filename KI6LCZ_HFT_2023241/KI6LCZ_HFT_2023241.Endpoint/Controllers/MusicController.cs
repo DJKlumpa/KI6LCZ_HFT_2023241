@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.SignalR;
 using System.Collections.Generic;
 using KI6LCZ_HFT_2023241.Logic;
 using KI6LCZ_HFT_2023241.Models;
-using KI6LCZ_HFT_2023241.Endpoint.Services;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,19 +12,15 @@ using System.Threading.Tasks;
 
 namespace KI6LCZ_HFT_2023241.Endpoint.Controllers
 {
-    [Route("[controller]")]
+    [Route("/[controller]")]
     [ApiController]
     public class MusicController : ControllerBase
     {
+        IMusicLogic logic;       
 
-        MusicLogic logic;
-        IHubContext<SignalRHub> rHub;
-        
-
-        public MusicController(MusicLogic logic, IHubContext<SignalRHub> rHub)
+        public MusicController(IMusicLogic logic)
         {
             this.logic = logic;
-            this.rHub = rHub;
         }
 
         //Get Music
@@ -47,7 +42,6 @@ namespace KI6LCZ_HFT_2023241.Endpoint.Controllers
         public void Create([FromBody] Music value)
         {
             logic.Create(value);
-            rHub.Clients.All.SendAsync("Music Created", value);
         }
 
         //Update Music
@@ -55,7 +49,6 @@ namespace KI6LCZ_HFT_2023241.Endpoint.Controllers
         public void Update([FromBody] Music value)
         {
             logic.Update(value);
-            rHub.Clients.All.SendAsync("Music Updated", value);
         }
 
         //Delete Music/id
@@ -64,7 +57,6 @@ namespace KI6LCZ_HFT_2023241.Endpoint.Controllers
         {
             var temp = logic.Get(id);
             logic.Delete(id);
-            rHub.Clients.All.SendAsync("Music Deleted", temp);
         }
     }
 }

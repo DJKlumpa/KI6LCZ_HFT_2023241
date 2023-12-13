@@ -1,66 +1,51 @@
-﻿using KI6LCZ_HFT_2023241.Endpoint.Services;
-using KI6LCZ_HFT_2023241.Logic;
+﻿using KI6LCZ_HFT_2023241.Logic;
 using KI6LCZ_HFT_2023241.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.SignalR;
 using System.Collections.Generic;
+
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace KI6LCZ_HFT_2023241.Endpoint.Controllers
 {
-   
-        [Route("[controller]")]
-        [ApiController]
-        public class AlbumController : ControllerBase
+    [Route("[controller]")]
+    [ApiController]
+    public class AlbumController : ControllerBase
+    {
+        IAlbumLogic albumLogic;
+        public AlbumController(IAlbumLogic albumLogic)
         {
+            this.albumLogic = albumLogic;
+        }
 
-            AlbumLogic logic;
-            IHubContext<SignalRHub> rHub;
+        [HttpGet]
+        public IEnumerable<Album> Get()
+        {
+            return albumLogic.GetAll();
+        }
 
+        [HttpGet("{id}")]
+        public Album Get(int id)
+        {
+            return albumLogic.Get(id);
+        }
 
-            public AlbumController(AlbumLogic logic, IHubContext<SignalRHub> rHub)
-            {
-                this.logic = logic;
-                this.rHub = rHub;
-            }
+        [HttpPost]
+        public void Post([FromBody] Album album)
+        {
+            albumLogic.Create(album);
+        }
 
-            //Get Album
-            [HttpGet]
-            public IEnumerable<Album> GetAll()
-            {
-                return this.logic.GetAll();
-            }
+        [HttpPut]
+        public void Put([FromBody] Album album)
+        {
+            albumLogic.Update(album);
+        }
 
-            //Get Album/id
-            [HttpGet("{id}")]
-            public Album Get(int id)
-            {
-                return this.logic.Get(id);
-            }
-
-            //Create Album
-            [HttpPost]
-            public void Create([FromBody] Album value)
-            {
-                logic.Create(value);
-                rHub.Clients.All.SendAsync("Album Created", value);
-            }
-
-            //Update Album
-            [HttpPut]
-            public void Update([FromBody] Album value)
-            {
-                logic.Update(value);
-                rHub.Clients.All.SendAsync("Album Updated", value);
-            }
-
-            //Delete Album/id
-            [HttpDelete("{id}")]
-            public void Delete(int id)
-            {
-                var temp = logic.Get(id);
-                logic.Delete(id);
-                rHub.Clients.All.SendAsync("Album Deleted", temp);
-            }
+        [HttpDelete("{id}")]
+        public void Delete(int id)
+        {
+            var albumToDelete = albumLogic.Get(id);
+            albumLogic.Delete(id);
         }
     }
+}

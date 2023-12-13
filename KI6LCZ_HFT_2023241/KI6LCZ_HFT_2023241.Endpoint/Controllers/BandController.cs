@@ -1,25 +1,21 @@
-﻿using KI6LCZ_HFT_2023241.Endpoint.Services;
-using KI6LCZ_HFT_2023241.Logic;
+﻿using KI6LCZ_HFT_2023241.Logic;
 using KI6LCZ_HFT_2023241.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.SignalR;
 using System.Collections.Generic;
+
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace KI6LCZ_HFT_2023241.Endpoint.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class BandController : Controller
+    public class BandController : ControllerBase
     {
+        IBandLogic logic;
 
-        BandLogic logic;
-        IHubContext<SignalRHub> rHub;
-
-        public BandController(BandLogic logic, IHubContext<SignalRHub> rHub)
+        public BandController(IBandLogic logic)
         {
             this.logic = logic;
-            this.rHub = rHub;
         }
 
         //Get Band
@@ -41,7 +37,6 @@ namespace KI6LCZ_HFT_2023241.Endpoint.Controllers
         public void Create([FromBody] Band value)
         {
             logic.Create(value);
-            rHub.Clients.All.SendAsync("Band Created", value);
         }
 
         //Update Band
@@ -49,7 +44,6 @@ namespace KI6LCZ_HFT_2023241.Endpoint.Controllers
         public void Update([FromBody] Band value)
         {
             logic.Update(value);
-            rHub.Clients.All.SendAsync("Band Updated", value);
         }
 
         //Delete Band/id
@@ -58,7 +52,6 @@ namespace KI6LCZ_HFT_2023241.Endpoint.Controllers
         {
             var temp = logic.Get(id);
             logic.Delete(id);
-            rHub.Clients.All.SendAsync("Band Deleted", temp);
         }
     }
 }

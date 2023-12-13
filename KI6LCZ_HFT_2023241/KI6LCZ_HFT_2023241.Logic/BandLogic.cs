@@ -8,38 +8,39 @@ using System.Threading.Tasks;
 
 namespace KI6LCZ_HFT_2023241.Logic
 {
-    public class BandLogic:ILogic<Band>
+    public class BandLogic : IBandLogic
     {
-        private IRepository<Band> _repository;
+        IBandRepository bandRepository;
 
-        public BandLogic(IRepository<Band> repository)
+        public BandLogic(IBandRepository bandRepository)
         {
-            _repository = repository;
+            this.bandRepository = bandRepository;
         }
 
         public void Create(Band t)
         {
-            _repository.Create(t);
+            bandRepository.Create(t);
         }
 
         public void Delete(int id)
         {
-            _repository.Delete(id);
+            bandRepository.Delete(id);
         }
 
         public Band Get(int id)
         {
-            return _repository.Get(id);
+            return bandRepository.Get(id);
         }
 
         public IQueryable<Band> GetAll()
         {
-            return _repository.ReadAll();
+            return bandRepository.ReadAll();
         }
 
         public void Update(Band t)
         {
-            _repository.Update(t);
+            bandRepository.Update(t);
         }
+
     }
 }

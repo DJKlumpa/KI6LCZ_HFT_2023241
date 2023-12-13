@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace KI6LCZ_HFT_2023241.Repository
 {
-    public class MusicRepository : IRepository<Music>
+    public class MusicRepository : IMusicRepository
     {
-        protected MusicDbContext musicDb;
+        public MusicDbContext musicDb;
         public MusicRepository(MusicDbContext musicDb)
         {
             this.musicDb = musicDb;
@@ -17,7 +17,6 @@ namespace KI6LCZ_HFT_2023241.Repository
 
         public void Create(Music item)
         {
-            //musicDb.Set<Music>().Add(item);
             musicDb.Musics.Add(item);
             musicDb.SaveChanges();
         }

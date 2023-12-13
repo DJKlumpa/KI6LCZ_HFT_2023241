@@ -7,16 +7,15 @@ using System.Threading.Tasks;
 
 namespace KI6LCZ_HFT_2023241.Repository
 {
-    public class AlbumRepository : IRepository<Album>
+    public class AlbumRepository : IAlbumRepository
     {
-        protected MusicDbContext musicDb;
-        public AlbumRepository(MusicDbContext ctx)
+        public MusicDbContext musicDb;
+        public AlbumRepository(MusicDbContext musicDb)
         {
-            musicDb= ctx;
+            this.musicDb = musicDb;
         }
         public void Create(Album item)
         {
-            //musicDb.Set<Album>().Add(item);
             musicDb.Add(item);
             musicDb.SaveChanges();
         }
@@ -45,8 +44,7 @@ namespace KI6LCZ_HFT_2023241.Repository
             albumUpdate.Year = albums.Year;
             albumUpdate.Musics = albums.Musics;
             albumUpdate.Band = albums.Band;
-            albumUpdate.Genre= albums.Genre;
-
+            albumUpdate.Genre = albums.Genre;
             musicDb.SaveChanges();
         }
     }

@@ -40,7 +40,7 @@ namespace KI6LCZ_HFT_2023241.Client
             }, TaskCreationOptions.LongRunning);
             #endregion
 
-            restService = new RestService("http://localhost:9775");
+            restService = new RestService("http://localhost:54376");
 
             var subMenuMusic = new ConsoleMenu(args, level: 1)
             .Add("Create", () => Create(restService, "music"))
@@ -212,7 +212,7 @@ namespace KI6LCZ_HFT_2023241.Client
                     Console.Clear();
 
                     Console.Write("music Genre: ");
-                    Genre genre = (Genre)double.Parse(Console.ReadLine()); Console.WriteLine();
+                    string genre = Console.ReadLine(); Console.WriteLine();
                     Console.Clear();
 
 
@@ -236,7 +236,7 @@ namespace KI6LCZ_HFT_2023241.Client
                     Console.Clear();
 
                     Console.Write("album Genre: ");
-                    Genre genre = (Genre)int.Parse(Console.ReadLine()); Console.WriteLine();
+                    string genre = Console.ReadLine(); Console.WriteLine();
                     Console.Clear();
 
 
@@ -293,7 +293,7 @@ namespace KI6LCZ_HFT_2023241.Client
                     Console.Clear();
 
                     Console.Write("music Genre: ");
-                    Genre genre = (Genre)double.Parse(Console.ReadLine()); Console.WriteLine();
+                    string genre = Console.ReadLine(); Console.WriteLine();
                     Console.Clear();
 
                     rs.Post<Music>(new Music() { Id = id, Title = title, Length = length, Genre = genre }, model);
@@ -316,7 +316,7 @@ namespace KI6LCZ_HFT_2023241.Client
                     Console.Clear();
 
                     Console.Write("album Genre: ");
-                    Genre genre = (Genre)int.Parse(Console.ReadLine()); Console.WriteLine();
+                    string genre = Console.ReadLine(); Console.WriteLine();
                     Console.Clear();
 
 
