@@ -17,7 +17,7 @@ namespace KI6LCZ_HFT_2023241.Client
         static RestService restService;
         static void Main(string[] args)
         {
-            #region Task&Thread     change this!!!!!!!
+            #region Task&Thread
             string loading = "This is the Haladó Fejlesztés Technikák half-semester task.";
             int maxTimeout = 8000;
             int timeoutCounter = 0;
