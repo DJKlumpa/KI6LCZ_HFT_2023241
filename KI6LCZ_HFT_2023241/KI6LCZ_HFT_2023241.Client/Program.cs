@@ -515,7 +515,6 @@ namespace KI6LCZ_HFT_2023241.Client
                     Console.WriteLine(music.Title);
                 }
                 Console.ReadLine();
-
             }
 
             Console.Clear();

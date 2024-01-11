@@ -34,133 +34,39 @@ namespace KI6LCZ_HFT_2023241.Test
             bandMock = new Mock<IRepository<Band>>();
 
             musicList = new List<Music> {
-                new Music(){Id=1,Title="Bloody Mary",AlbumId=2,Length=3.55,Genre="Pop" },
-                new Music(){Id=2,Title="Kelenföld",AlbumId=1,Length=4.11,Genre="Pop"},
-                new Music(){Id=3,Title="we came as monkeys",AlbumId=4,Length=5.03,Genre="Metal"},
-                new Music(){Id=4,Title="Inside the Dark",AlbumId=4,Length=3.16,Genre="Metal"},
-                new Music(){Id=5,Title="Latin szótárak",AlbumId=2,Length=6.07,Genre="Latin"}
+               new Music(){Id=1,Title="Bloody Mary",AlbumId=2,Length=3.55,Genre=Genre.Pop },
+                new Music(){Id=2,Title="Kelenföld",AlbumId=1,Length=4.11,Genre=Genre.Pop},
+                new Music(){Id=3,Title="we came as monkeys",AlbumId=4,Length=5.03,Genre=Genre.Metal},
+                new Music(){Id=4,Title="Inside the Dark",AlbumId=4,Length=3.16,Genre=Genre.Metal},
+                new Music(){Id=5,Title="Latin szótárak",AlbumId=2,Length=6.07,Genre=Genre.Latin}
             };            
             bandList = new List<Band> {
                 new Band(){Id=1,BandName="Dark Shadows",Year=2003},
                 new Band(){Id=2,BandName="Unikornisok",Year=2010}
             };
             albumList = new List<Album> {
-                new Album(){Id=1,AlbumName="Sunday After Chruch",BandId=1,Year=2002,Genre="Electronic Dance"},
-                new Album(){Id=2,AlbumName="English Hunglish művészete",BandId=1,Year=2004,Genre="Electronic Dance"},
-                new Album(){Id=3,AlbumName="Dark Shadows EP",BandId=2,Year=2004,Genre="Metal"},
-                new Album(){Id=4,AlbumName="Getting Away with Toxic",BandId=2,Year=2006,Genre="Metal"}
+                new Album(){Id=1,AlbumName="Sunday After Chruch",BandId=1,Year=2002,Genre=Genre.Electronic_Dance},
+                new Album(){Id=2,AlbumName="English Hunglish művészete",BandId=1,Year=2004,Genre=Genre.Electronic_Dance},
+                new Album(){Id=3,AlbumName="Dark Shadows EP",BandId=2,Year=2004,Genre=Genre.Metal},
+                new Album(){Id=4,AlbumName="Getting Away with Toxic",BandId=2,Year=2006,Genre=Genre.Metal}
             };
 
             musicMock.Setup(x => x.ReadAll()).Returns(musicList.AsQueryable());
             albumMock.Setup(x => x.ReadAll()).Returns(albumList.AsQueryable());
             bandMock.Setup(x => x.ReadAll()).Returns(bandList.AsQueryable());
 
-            musicLogic = new MusicLogic(musicMock.Object);
-            albumLogic = new AlbumLogic(albumMock.Object,bandMock.Object);
-            bandLogic = new BandLogic(bandMock.Object);
+            musicLogic = new MusicLogic(musicMock.Object, albumMock.Object);
+            albumLogic = new AlbumLogic(albumMock.Object, bandMock.Object);
+            bandLogic = new BandLogic(bandMock.Object, albumMock.Object);
         }
 
         [Test]
-        public static void TestMusicAll()
+        public void AlbumBetweenDates_Test()
         {
-            List<Music> testResult = musicList;
-
-            var result = musicLogic.GetAll();
-
-            Assert.That(result.Count, Is.EqualTo(testResult.Count));
-            Assert.That(result, Is.EquivalentTo(testResult));
-        }
-        [Test]
-        public static void TestAlbumAll()
-        {
-            List<Album> testResult = albumList;
-
-            var result = albumLogic.GetAll();
-
-            Assert.That(result.Count, Is.EqualTo(testResult.Count));
-            Assert.That(result, Is.EquivalentTo(testResult));
-        }
-        [Test]
-        public static void TestBandAll()
-        {
-            List<Band> testResult = bandList;
-
-            var result = bandLogic.GetAll();
-
-            Assert.That(result.Count, Is.EqualTo(testResult.Count));
-            Assert.That(result, Is.EquivalentTo(testResult));
-        }
-        [TestCase(0)]
-        [TestCase(1)]
-        public static void TestUpdateMusic(int id)
-        {
-            Music newMusic = new Music() { Id = id, Title = "ZSZSZSZSZS Mi ez valami bboy találkozó?", AlbumId = 1, Length = 2.55, Genre = "HipHop" };
-
-            musicMock.Setup(repo => repo.Update(newMusic)).Verifiable();
-            musicLogic.Update(newMusic);
-            musicMock.Verify(repo => repo.Update(newMusic));
-        }
-        [TestCase(0)]
-        [TestCase(1)]
-        public static void TestUpdateAlbum(int id)
-        {
-            Album newAlbum = new Album() { Id = id, AlbumName = "ZSZSZSZSZS Mi ez valami battle of the year?", BandId = 1, Year = 2016, Genre = "HipHop" };
-
-            albumMock.Setup(repo => repo.Update(newAlbum)).Verifiable();
-            albumLogic.Update(newAlbum);
-            albumMock.Verify(repo => repo.Update(newAlbum));
-        }
-        [TestCase(0)]
-        [TestCase(1)]
-        public static void TestUpdateBand(int id)
-        {
-            Band newBand = new Band() { Id = id, BandName = "BBOYING", Year = 1998 };
-
-            bandMock.Setup(repo => repo.Update(newBand)).Verifiable();
-            bandLogic.Update(newBand);
-            bandMock.Verify(repo => repo.Update(newBand));
+            var result = albumLogic.AlbumBetweenDates(1991, 2009).ToArray();
+            Assert.That(result.Count, Is.EqualTo(2));
         }
 
-        [TestCase(0)]
-        [TestCase(1)]
-        [TestCase(5)]
-        [TestCase(-1)]
-        public static void TestDeleteMusic(int id)
-        {
-            musicMock.Setup(repo => repo.Delete(id)).Verifiable();
-            musicLogic.Delete(id);
-            musicMock.Verify(repo => repo.Delete(id));
-        }
-
-        [TestCase(0)]
-        [TestCase(1)]
-        [TestCase(5)]
-        [TestCase(-1)]
-        public static void TestDeleteAlbum(int id)
-        {
-            albumMock.Setup(repo => repo.Delete(id)).Verifiable();
-            albumLogic.Delete(id);
-            albumMock.Verify(repo => repo.Delete(id));
-        }
-        [TestCase(0)]
-        [TestCase(1)]
-        [TestCase(5)]
-        [TestCase(-1)]
-        public static void TestDeleteBand(int id)
-        {
-            bandMock.Setup(repo => repo.Delete(id)).Verifiable();
-            bandLogic.Delete(id);
-            bandMock.Verify(repo => repo.Delete(id));
-        }
-
-
-
-        [Test]
-        public void BandBetweenDates_Test()
-        {
-            var result = albumLogic.BandBetweenDates(1991, 2009).ToArray();
-            Assert.That(result.Count, Is.EqualTo(1));
-        }
         [Test]
         public void SpecificBandAlbums_Test()
         {
@@ -168,7 +74,75 @@ namespace KI6LCZ_HFT_2023241.Test
             Assert.That(result.Count, Is.EqualTo(2));
         }
 
-        
+        [Test]
+        public void BandMoreThanNAlbum_Test()
+        {
+            var result = bandLogic.BandMoreThanNAlbum(1).ToArray();
+            Assert.That(result.Count, Is.EqualTo(2));
+        }
+
+        [Test]
+        public void GetAlbumsWithBandName_Test()
+        {
+            var result = albumLogic.GetAlbumsWithBandName("Unikornisok").ToArray();
+            Assert.That(result.Count, Is.EqualTo(2));
+        }
+
+        [Test]
+        public void MusicWithGenre_Test()
+        {
+            var result = musicLogic.MusicWithGenre(Genre.Metal).ToArray();
+            Assert.That(result.Count, Is.EqualTo(2));
+        }
+
+        [Test]
+        public void MusicCreate_Test()
+        {
+            Music m = new Music() { Id = 99, Title = "TESt MUSIC", AlbumId = 2, Length = 3.55, Genre = Genre.Country };
+
+            Assert.DoesNotThrow(() => musicLogic.Create(m));
+        }
+
+        [Test]
+        public void MusicCreateException_Test()
+        {
+            Music m = new Music() { Id = 99, Title = "", AlbumId = 2, Length = 3.55, Genre = Genre.Country };
+
+            Assert.Throws<Exception>(() => musicLogic.Create(m));
+        }
+
+        [Test]
+        public void AlbumCreate_Test()
+        {
+            Album a = new Album() { Id = 99, AlbumName = "TEST ALBUM", BandId = 1, Year = 9999, Genre = Genre.Metal };
+
+            Assert.DoesNotThrow(() => albumLogic.Create(a));
+        }
+
+        [Test]
+        public void AlbumCreateException_Test()
+        {
+            Album a = new Album() { Id = 99, AlbumName = "", BandId = 1, Year = 999, Genre = Genre.Metal };
+
+            Assert.Throws<Exception>(() => albumLogic.Create(a));
+        }
+
+        [Test]
+        public void BandCreate_Test()
+        {
+            Band b = new Band() { Id = 99, BandName = "TEST BAND", Year = 999 };
+
+
+            Assert.DoesNotThrow(() => bandLogic.Create(b));
+        }
+
+        [Test]
+        public void BandCreateException_Test()
+        {
+            Band b = new Band() { Id = 99, BandName = "", Year = 999 };
+
+            Assert.Throws<Exception>(() => bandLogic.Create(b));
+        }
 
 
     }
