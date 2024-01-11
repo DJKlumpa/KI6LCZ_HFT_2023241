@@ -11,47 +11,47 @@ namespace KI6LCZ_HFT_2023241.Endpoint.Controllers
     [ApiController]
     public class BandController : ControllerBase
     {
-        private readonly IBandLogic _bandLogic;
+        IBandLogic logic;
 
-        public BandController(IBandLogic bandLogic)
+        public BandController(IBandLogic logic)
         {
-            this._bandLogic = bandLogic;
+            this.logic = logic;
         }
 
         //Get Band
         [HttpGet]
         public IEnumerable<Band> GetAll()
         {
-            return this._bandLogic.GetAll();
+            return this.logic.GetAll();
         }
 
         //Get Band/id
         [HttpGet("{id}")]
         public Band Get(int id)
         {
-            return this._bandLogic.Get(id);
+            return this.logic.Get(id);
         }
 
         //Create Band
         [HttpPost]
         public void Create([FromBody] Band value)
         {
-            _bandLogic.Create(value);
+            logic.Create(value);
         }
 
         //Update Band
         [HttpPut]
         public void Update([FromBody] Band value)
         {
-            _bandLogic.Update(value);
+            logic.Update(value);
         }
 
         //Delete Band/id
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            var temp = _bandLogic.Get(id);
-            _bandLogic.Delete(id);
+            var temp = logic.Get(id);
+            logic.Delete(id);
         }
     }
 }

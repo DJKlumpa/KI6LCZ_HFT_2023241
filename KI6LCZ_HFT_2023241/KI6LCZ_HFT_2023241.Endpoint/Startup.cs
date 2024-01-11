@@ -23,13 +23,13 @@ namespace KI6LCZ_HFT_2023241.Endpoint
          
             services.AddSingleton<MusicDbContext, MusicDbContext>();
 
-            services.AddTransient<IRepository<Music>, MusicRepository>();
-            services.AddTransient<IRepository<Album>, AlbumRepository>();
             services.AddTransient<IRepository<Band>, BandRepository>();
+            services.AddTransient<IRepository<Album>, AlbumRepository>();
+            services.AddTransient<IRepository<Music>, MusicRepository>();
 
-            services.AddTransient<IMusicLogic, MusicLogic>();
-            services.AddTransient<IAlbumLogic, AlbumLogic>();
             services.AddTransient<IBandLogic, BandLogic>();
+            services.AddTransient<IAlbumLogic, AlbumLogic>();
+            services.AddTransient<IMusicLogic, MusicLogic>();
 
             services.AddSwaggerGen();
             

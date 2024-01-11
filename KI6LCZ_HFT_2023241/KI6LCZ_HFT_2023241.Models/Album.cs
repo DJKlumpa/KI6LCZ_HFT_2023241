@@ -18,7 +18,7 @@ namespace KI6LCZ_HFT_2023241.Models
         [ForeignKey(nameof(Band))]
         public int BandId { get; set;}
         public int Year { get; set; }
-        public string Genre { get; set; }
+        public Genre Genre { get; set; }
         public virtual Band Band { get; set; }
         [NotMapped]
         public virtual ICollection<Music> Musics { get; set; }
@@ -29,6 +29,15 @@ namespace KI6LCZ_HFT_2023241.Models
         public Album()
         {
             Musics = new List<Music>();
+        }
+        public override bool Equals(object obj)
+        {
+            return this.Id.Equals((obj as Music).Id);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Id, Year, AlbumName);
         }
     }
 }

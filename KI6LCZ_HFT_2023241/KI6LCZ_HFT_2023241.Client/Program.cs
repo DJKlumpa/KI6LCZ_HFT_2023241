@@ -90,12 +90,12 @@ namespace KI6LCZ_HFT_2023241.Client
             });
 
             var subMenuStats = new ConsoleMenu(args, level: 1)
-                    .Add("Create", () => Create(restService, "album"))
-                    .Add("Create", () => Create(restService, "album"))
-                    .Add("Create", () => Create(restService, "album"))
-                    .Add("Create", () => Create(restService, "album"))
-                    .Add("Create", () => Create(restService, "album"))
-                        .Configure(config =>
+                   .Add("BandID2Albums", () => BandID2Albums(restService))
+                   .Add("BandBetweenDates", () => AlbumBetweenDates(restService))
+                   .Add("BandMoreThanNAlbum", () => BandMoreThanNAlbum(restService))
+                   .Add("GetAlbumsWithBandName", () => GetAlbumsWithBandName(restService))
+                   .Add("MusicWithGenre", () => MusicWithGenre(restService))
+                       .Configure(config =>
 {
                         config.Selector = "--> ";
                         config.EnableFilter = true;
@@ -109,7 +109,7 @@ namespace KI6LCZ_HFT_2023241.Client
               .Add("Music", subMenuMusic.Show)
               .Add("Album", subMenuAlbum.Show)
               .Add("Band", subMenuBand.Show)
-              .Add("Queries", ()=>Query(restService))
+              .Add("Stats", ()=>Query(restService))
               .Add("Exit", () => Environment.Exit(0))
               .Configure(config =>
               {
@@ -215,11 +215,11 @@ namespace KI6LCZ_HFT_2023241.Client
                     Console.Clear();
 
                     Console.Write("music Genre: ");
-                    string genre = Console.ReadLine(); Console.WriteLine();
+                    Genre genre = (Genre)Enum.Parse(typeof(Genre), Console.ReadLine()); Console.WriteLine();
                     Console.Clear();
 
 
-                    rs.Put<Music>(new Music() { Id = id, Title = title, Length = length, Genre = genre }, model);
+                    rs.Put<Music>(new Music() { Id = id, Title = title, Length = length, Genre = Genre.R_B }, model);
                 }
                 else if (model == "album")
                 {
@@ -239,12 +239,12 @@ namespace KI6LCZ_HFT_2023241.Client
                     Console.Clear();
 
                     Console.Write("album Genre: ");
-                    string genre = Console.ReadLine(); Console.WriteLine();
+                    Genre genre = (Genre)Enum.Parse(typeof(Genre), Console.ReadLine()); Console.WriteLine();
                     Console.Clear();
 
 
 
-                    rs.Put<Album>(new Album() { Id = id, AlbumName = name, Year = year, Genre = genre }, model);
+                    rs.Put<Album>(new Album() { Id = id, AlbumName = name, Year = year, Genre = Genre.Latin }, model);
                 }
                 else
                 {
@@ -296,7 +296,7 @@ namespace KI6LCZ_HFT_2023241.Client
                     Console.Clear();
 
                     Console.Write("music Genre: ");
-                    string genre = Console.ReadLine(); Console.WriteLine();
+                    Genre genre = (Genre)Enum.Parse(typeof(Genre), Console.ReadLine()); Console.WriteLine();
                     Console.Clear();
 
                     rs.Post<Music>(new Music() { Id = id, Title = title, Length = length, Genre = genre }, model);
@@ -319,7 +319,7 @@ namespace KI6LCZ_HFT_2023241.Client
                     Console.Clear();
 
                     Console.Write("album Genre: ");
-                    string genre = Console.ReadLine(); Console.WriteLine();
+                    Genre genre = (Genre)Enum.Parse(typeof(Genre), Console.ReadLine()); Console.WriteLine();
                     Console.Clear();
 
 
@@ -435,6 +435,87 @@ namespace KI6LCZ_HFT_2023241.Client
                     Console.WriteLine(music.Title);
                 }
                 Console.ReadKey();
+            }
+
+            static void BandID2Albums(RestService rs)
+            {
+                rs.Get<Band>("band").ForEach(x => Console.WriteLine($"[{x.Id}] - {x.BandName}"));
+
+                Console.Write("Select an id: "); Console.WriteLine();
+                int id = int.Parse(Console.ReadLine());
+                Console.Clear();
+
+                var q1 = rs.Get<Album>($"stat/BandID2Albums/{id}");
+                foreach (var album in q1)
+                {
+                    Console.WriteLine(album.AlbumName);
+                }
+                Console.ReadLine();
+
+            }
+
+
+            static void AlbumBetweenDates(RestService rs)
+            {
+                Console.Write("Write start year: "); Console.WriteLine();
+                int startyear = int.Parse(Console.ReadLine());
+                Console.Clear();
+
+                Console.Write("Write end year: "); Console.WriteLine();
+                int endyear = int.Parse(Console.ReadLine());
+                Console.Clear();
+
+                var q1 = rs.Get<Album>($"stat/AlbumBetweenDates/{startyear}/{endyear}");
+                foreach (var album in q1)
+                {
+                    Console.WriteLine(album.AlbumName);
+                }
+                Console.ReadLine();
+            }
+
+            static void BandMoreThanNAlbum(RestService rs)
+            {
+                Console.Write("Write a number: "); Console.WriteLine();
+                int number = int.Parse(Console.ReadLine());
+                Console.Clear();
+
+                var q1 = rs.Get<Band>($"stat/BandMoreThanNAlbum/{number}");
+                foreach (var band in q1)
+                {
+                    Console.WriteLine(band.BandName);
+                }
+                Console.ReadLine();
+
+            }
+
+            static void GetAlbumsWithBandName(RestService rs)
+            {
+                Console.Write("Write band name: "); Console.WriteLine();
+                string bandName = Console.ReadLine();
+                Console.Clear();
+
+                var q1 = rs.Get<Album>($"stat/GetAlbumsWithBandName/{bandName}");
+                foreach (var album in q1)
+                {
+                    Console.WriteLine(album.AlbumName);
+                }
+                Console.ReadLine();
+
+            }
+
+            static void MusicWithGenre(RestService rs)
+            {
+                Console.Write("Write genre: "); Console.WriteLine();
+                Genre genre = (Genre)Enum.Parse(typeof(Genre), Console.ReadLine());
+                Console.Clear();
+
+                var q1 = rs.Get<Music>($"stat/MusicWithGenre/{genre}");
+                foreach (var music in q1)
+                {
+                    Console.WriteLine(music.Title);
+                }
+                Console.ReadLine();
+
             }
 
             Console.Clear();

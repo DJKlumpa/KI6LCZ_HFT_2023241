@@ -16,47 +16,47 @@ namespace KI6LCZ_HFT_2023241.Endpoint.Controllers
     [ApiController]
     public class MusicController : ControllerBase
     {
-        private readonly IMusicLogic _musicLogic;
+        IMusicLogic logic;
 
-        public MusicController(IMusicLogic musicLogic)
+        public MusicController(IMusicLogic logic)
         {
-            this._musicLogic = musicLogic;
+            this.logic = logic;
         }
 
         //Get Music
         [HttpGet]
         public IEnumerable<Music> GetAll()
         {
-            return this._musicLogic.GetAll();
+            return this.logic.GetAll();
         }
 
         //Get Music/id
         [HttpGet("{id}")]
         public Music Get(int id)
         {
-            return this._musicLogic.Get(id);
+            return this.logic.Get(id);
         }
 
         //Create Music
         [HttpPost]
         public void Create([FromBody] Music value)
         {
-            _musicLogic.Create(value);
+            logic.Create(value);
         }
 
         //Update Music
         [HttpPut]
         public void Update([FromBody] Music value)
         {
-            _musicLogic.Update(value);
+            logic.Update(value);
         }
 
         //Delete Music/id
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            var temp = _musicLogic.Get(id);
-            _musicLogic.Delete(id);
+            var temp = logic.Get(id);
+            logic.Delete(id);
         }
     }
 }

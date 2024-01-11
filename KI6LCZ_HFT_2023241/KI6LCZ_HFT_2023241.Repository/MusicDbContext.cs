@@ -46,13 +46,13 @@ namespace KI6LCZ_HFT_2023241.Repository
                     Title = "Keserű csokis eper",
                     AlbumId = 4,
                     Length = 3.39,
-                    Genre = "Pop"
+                    Genre = Genre.Pop
 
                 },
-                new Music(){Id=2,Title="Kelenföld",AlbumId=1,Length=4.11,Genre="Pop"},
-                new Music(){Id=3,Title="we came as monkeys",AlbumId=4,Length=5.03,Genre="Metal"},
-                new Music(){Id=4,Title="Inside the Dark",AlbumId=4,Length=3.16,Genre="Metal"},
-                new Music(){Id=5,Title="Latin szótárak",AlbumId=2,Length=6.07,Genre="Latin"},
+                new Music(){Id=2,Title="Kelenföld",AlbumId=1,Length=4.11,Genre=Genre.Pop},
+                new Music(){Id=3,Title="we came as monkeys",AlbumId=4,Length=5.03,Genre=Genre.Metal},
+                new Music(){Id=4,Title="Inside the Dark",AlbumId=4,Length=3.16,Genre=Genre.Metal},
+                new Music(){Id=5,Title="Latin szótárak",AlbumId=2,Length=6.07,Genre=Genre.Latin},
 
             }
 
@@ -65,13 +65,13 @@ namespace KI6LCZ_HFT_2023241.Repository
                     AlbumName = "Fergeteges Szombat reggel",
                     BandId = 1,
                     Year=2001,
-                    Genre = "Pop"
+                    Genre = Genre.Pop
 
                 },
-                new Album(){Id=2,AlbumName="Sunday After Chruch",BandId=1,Year=2002,Genre="Electronic Dance"},
-                new Album(){Id=3,AlbumName="English Hunglish művészete",BandId=1,Year=2004,Genre="Electronic Dance"},
-                new Album(){Id=4,AlbumName="Dark Shadows EP",BandId=2,Year=2004,Genre="Metal"},
-                new Album(){Id=5,AlbumName="Getting Away with Toxic",BandId=2,Year=2006,Genre="Metal"},
+                new Album(){Id=2,AlbumName="Sunday After Chruch",BandId=1,Year=2002,Genre=Genre.Electronic_Dance},
+                new Album(){Id=3,AlbumName="English Hunglish művészete",BandId=1,Year=2004,Genre=Genre.Electronic_Dance},
+                new Album(){Id=4,AlbumName="Dark Shadows EP",BandId=2,Year=2004,Genre=Genre.Metal},
+                new Album(){Id=5,AlbumName="Getting Away with Toxic",BandId=2,Year=2006,Genre=Genre.Metal},
             });
 
 

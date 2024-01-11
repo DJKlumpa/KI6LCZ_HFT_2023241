@@ -10,9 +10,11 @@ namespace KI6LCZ_HFT_2023241.Logic
     public class MusicLogic : IMusicLogic
     {
         private readonly IRepository<Music> _musicRepository;
-        public MusicLogic(IRepository<Music> musicRepository)
+        private readonly IRepository<Album> _albumRepository;
+        public MusicLogic(IRepository<Music> musicRepository, IRepository<Album> albumRepository)
         {
             this._musicRepository = musicRepository;
+            _albumRepository = albumRepository;
         }
 
         public Music Get(int id)
@@ -42,19 +44,10 @@ namespace KI6LCZ_HFT_2023241.Logic
         {
             _musicRepository.Update(t);
         }
-        public IEnumerable<Music> MusicWhereAlbumID2()
+        public IEnumerable<Music> MusicWithGenre(Genre genre)
         {
-            var musicForBand = _musicRepository.ReadAll().Where(music => music.Album.BandId == 2).ToList();
-            return musicForBand;
-        }
-        public IEnumerable<Music> MusicWhereAlbumAfter1991()
-        {
-            var musicAfter1991 = _musicRepository.ReadAll().Where(music => music.Album.Year > 1991).ToList();
-            return musicAfter1991;
-        }
-        public IEnumerable<Music> MusicWhereAlbumGenrePop()
-        {
-            var musicAlbumPop = _musicRepository.ReadAll().Where(music => music.Album.Genre == "Pop").ToList();
+            var musicAlbumPop = _musicRepository.ReadAll().Where(x => x.Genre.Equals(genre)).ToList();
+
             return musicAlbumPop;
         }
     }

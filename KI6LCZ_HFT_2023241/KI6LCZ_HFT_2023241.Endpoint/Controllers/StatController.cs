@@ -11,9 +11,9 @@ namespace KI6LCZ_HFT_2023241.Endpoint.Controllers
     [ApiController]
     public class StatController : ControllerBase
     {
-        IMusicLogic musicLogic;
-        IAlbumLogic albumLogic;
         IBandLogic bandLogic;
+        IAlbumLogic albumLogic;
+        IMusicLogic musicLogic;
         public StatController(IBandLogic bandLogic, IAlbumLogic albumLogic, IMusicLogic musicLogic)
         {
             this.bandLogic = bandLogic;
@@ -27,35 +27,25 @@ namespace KI6LCZ_HFT_2023241.Endpoint.Controllers
         {
             return albumLogic.SpecificBandAlbums(bandID);
         }
-        [HttpGet("{startDate}&{endDate}")]
-        public IEnumerable<Album> BandBetweenDates(int startDate, int endDate)
+        [HttpGet("{startDate}/{endDate}")]
+        public IEnumerable<Album> AlbumBetweenDates(int startDate, int endDate)
         {
-            return albumLogic.BandBetweenDates(startDate, endDate);
+            return albumLogic.AlbumBetweenDates(startDate, endDate);
         }
-        [HttpGet]
-        public IEnumerable<Album> BandMoreThan1Album()
+        [HttpGet("{n}")]
+        public IEnumerable<Band> BandMoreThanNAlbum(int n)
         {
-            return albumLogic.BandMoreThan1Album();
+            return bandLogic.BandMoreThanNAlbum(n);
         }
-        [HttpGet]
-        public IEnumerable<Album> DarkShadowsAlbumbs()
+        [HttpGet("bandName")]
+        public IEnumerable<Album> GetAlbumsWithBandName(string bandName)
         {
-            return albumLogic.DarkShadowsAlbumbs();
+            return albumLogic.GetAlbumsWithBandName(bandName);
         }
-        [HttpGet]
-        public IEnumerable<Music> MusicWhereAlbumID2()
+        [HttpGet("{genre}")]
+        public IEnumerable<Music> MusicWithGenre(Genre genre)
         {
-            return musicLogic.MusicWhereAlbumID2();
-        }
-        [HttpGet]
-        public IEnumerable<Music> MusicWhereAlbumAfter1991()
-        {
-            return musicLogic.MusicWhereAlbumAfter1991();
-        }
-        [HttpGet]
-        public IEnumerable<Music> MusicWhereAlbumGenrePop()
-        {
-            return musicLogic.MusicWhereAlbumGenrePop();
+            return musicLogic.MusicWithGenre(genre);
         }
 
     }

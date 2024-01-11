@@ -6,9 +6,8 @@ namespace KI6LCZ_HFT_2023241.Logic
 {
     public interface IAlbumLogic : ILogic<Album>
     {
-        IEnumerable<Album> BandBetweenDates(int startDate, int endDate);
+        IEnumerable<Album> AlbumBetweenDates(int startDate, int endDate);
         IEnumerable<Album> SpecificBandAlbums(int bandID);
-        IEnumerable<Album> BandMoreThan1Album();
-        IEnumerable<Album> DarkShadowsAlbumbs();       
+        IEnumerable<Album> GetAlbumsWithBandName(string bandName);
     }
 }

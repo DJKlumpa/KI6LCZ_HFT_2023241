@@ -11,10 +11,12 @@ namespace KI6LCZ_HFT_2023241.Logic
     public class BandLogic : IBandLogic
     {
         private readonly IRepository<Band> _bandRepository;
+        private readonly IRepository<Album> _albumRepository;
 
-        public BandLogic(IRepository<Band> bandRepository)
+        public BandLogic(IRepository<Band> bandRepository, IRepository<Album> albumRepository)
         {
             this._bandRepository = bandRepository;
+            _albumRepository = albumRepository;
         }
 
         public void Create(Band t)
@@ -46,6 +48,16 @@ namespace KI6LCZ_HFT_2023241.Logic
         {
             _bandRepository.Update(t);
         }
+        public IEnumerable<Band> BandMoreThanNAlbum(int n)
+        {
+            var bands = _bandRepository.ReadAll().ToList();
+            var albums = _albumRepository.ReadAll().ToList();
 
+            var bandsWithMoreThanNAlbums = bands
+                .Where(band => albums.Count(album => album.BandId == band.Id) > n);
+
+            return bandsWithMoreThanNAlbums;
+
+        }
     }
 }

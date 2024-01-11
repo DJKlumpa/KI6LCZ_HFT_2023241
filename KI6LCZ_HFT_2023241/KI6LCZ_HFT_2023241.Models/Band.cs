@@ -28,6 +28,15 @@ namespace KI6LCZ_HFT_2023241.Models
         {
              Albums = new List<Album>();
         }
+        public override bool Equals(object obj)
+        {
+            return this.Id.Equals((obj as Music).Id);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Id, BandName, Year);
+        }
 
     }
 }

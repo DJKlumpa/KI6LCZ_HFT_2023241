@@ -20,10 +20,19 @@ namespace KI6LCZ_HFT_2023241.Models
         [ForeignKey(nameof(Album))]
         public int AlbumId { get; set; }
         public double Length { get; set; }
-        public string Genre { get; set; }
+        public Genre Genre { get; set; }
 
         [NotMapped]
         public string AllData => $"[{Id}] => {Title} - {Album} - {Length} - {Genre}";
+        public override bool Equals(object obj)
+        {
+            return this.Id.Equals((obj as Music).Id);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Id, Title, Length);
+        }
 
     }
 }

@@ -55,24 +55,23 @@ namespace KI6LCZ_HFT_2023241.Logic
             var albumsForBand = _albumRepository.ReadAll().Where(album => album.BandId == bandID).ToList();
             return albumsForBand;
         }
-        public IEnumerable<Album> BandBetweenDates(int startDate, int endDate)
+        public IEnumerable<Album> AlbumBetweenDates(int startDate, int endDate)
         {
-            var albumsBetweenDates =   (from album in _albumRepository.ReadAll()
-                                        join band in _bandRepository.ReadAll() on album.Id equals band.Id
-                                        where album.Band.Year >= startDate && album.Band.Year <= endDate
-                                        select album).ToList();
+            var albumsBetweenDates = (from album in _albumRepository.ReadAll()
+                                      join band in _bandRepository.ReadAll() on album.BandId equals band.Id
+                                      where band.Year >= startDate && band.Year <= endDate
+                                      select album).ToList();
 
             return albumsBetweenDates;
         }
-        public IEnumerable<Album> BandMoreThan1Album()
+
+        public IEnumerable<Album> GetAlbumsWithBandName(string bandName)
         {
-            var albumsMoreThanOne = _albumRepository.ReadAll().Where(album => album.Band.Year > 2000).ToList();
-            return albumsMoreThanOne;
-        }
-        public IEnumerable<Album> DarkShadowsAlbumbs()
-        {
-            var darkShadowsAlbums =  _albumRepository.ReadAll().Where(album => album.Band.BandName == "Dark Shadows").ToList();
-            return darkShadowsAlbums;
+            var AlbumsWithBandName = (from album in _albumRepository.ReadAll()
+                                      join band in _bandRepository.ReadAll() on album.BandId equals band.Id
+                                      where band.BandName == bandName
+                                      select album).ToList();
+            return AlbumsWithBandName;
         }
     }
 }
